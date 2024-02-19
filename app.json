@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "SlimFitFrontendv1",
+    "slug": "SlimFitFrontendv1",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "SlimFitFrontendv1"
+}
