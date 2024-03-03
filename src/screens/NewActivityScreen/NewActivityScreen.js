@@ -4,15 +4,15 @@ import { Dropdown } from 'react-native-element-dropdown';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import DatePicker from 'react-native-date-picker'
 
-const LogCalorieIntake = () => {
+const NewActivityScreen = () => {
 
 
 
-    const [activityName, setActivityName] = useState('New Meal');
-    const [selectFood, setSelectFood] = useState(null);
+    const [activityName, setActivityName] = useState('New Activity');
+    const [selectActivityType, setSelectActivityType] = useState(null);
     const [selectMeal, setSelectmeal] = useState(null);
     const [caloriesBurned, setCaloriesBurned] = useState(0);
-    const foodData = [
+    const activityTypeData = [
         { label: 'Item 1', value: '1' },
         { label: 'Item 2', value: '2' },
         { label: 'Item 3', value: '3' },
@@ -30,8 +30,11 @@ const LogCalorieIntake = () => {
         { label: 'Snack', value: '4' },
         { label: 'Other', value: '5' },
       ];
-    const [date, setDate] = useState(new Date())
-    const [dateOpen, setDateOpen] = useState(false)
+    const [startDateTime, setStartDateTime] = useState(new Date())
+    const [startDateTimeOpen, setStartDateTimeOpen] = useState(false)
+
+    const [endDateTime, setEndDateTime] = useState(new Date())
+    const [endDateTimeOpen, setEndDateTimeOpen] = useState(false)
 
     const [note, setNote] = useState('');
 
@@ -165,7 +168,7 @@ const LogCalorieIntake = () => {
                 style={styles.input}
                 // onChangeText={}
                 value={activityName}
-                placeholder="New Meal"
+                placeholder="New Activity"
                 placeholderTextColor="white"
                 
             />
@@ -173,7 +176,7 @@ const LogCalorieIntake = () => {
             <View style={styles.inputField}>
               <Dropdown
                   style={styles.dropdown}
-                  data={foodData}
+                  data={activityTypeData}
                   search
                   maxHeight={300}
                   labelField="label"
@@ -184,9 +187,9 @@ const LogCalorieIntake = () => {
                   iconColor='white'
                   activeColor='white'
                   placeholderStyle={{color:'white'}}
-                  value={selectFood}
+                  value={selectActivityType}
                   onChange={item => {
-                  setSelectFood(item.value);
+                  setSelectActivityType(item.value);
                   }}
               />
             </View>
@@ -210,19 +213,36 @@ const LogCalorieIntake = () => {
               />
             </View>
             <View style={styles.inputField}>
-              <TouchableOpacity style={styles.dateButton} onPress={() => setDateOpen(true)}>
-                <Text style={{color:"white"}}>Time</Text>
+              <TouchableOpacity style={styles.dateButton} onPress={() => setStartDateTimeOpen(true)}>
+                <Text style={{color:"white"}}>Start Time</Text>
               </TouchableOpacity>
               <DatePicker
                 modal
-                open={dateOpen}
-                date={date}
+                open={startDateTimeOpen}
+                date={startDateTime}
                 onConfirm={(date) => {
-                  setDateOpen(false)
-                  setDate(date)
+                  setStartDateTimeOpen(false)
+                  setStartDateTime(date)
                 }}
                 onCancel={() => {
-                  setDateOpen(false)
+                  setStartDateTimeOpen(false)
+                }}
+              />
+            </View>
+            <View style={styles.inputField}>
+              <TouchableOpacity style={styles.dateButton} onPress={() => setEndDateTimeOpen(true)}>
+                <Text style={{color:"white"}}>End Time</Text>
+              </TouchableOpacity>
+              <DatePicker
+                modal
+                open={endDateTimeOpen}
+                date={endDateTime}
+                onConfirm={(date) => {
+                  setEndDateTimeOpen(false)
+                  setEndDateTime(date)
+                }}
+                onCancel={() => {
+                  setEndDateTimeOpen(false)
                 }}
               />
             </View>
@@ -247,7 +267,7 @@ const LogCalorieIntake = () => {
             />
             </View>
 
-            <TouchableOpacity style={styles.saveButton} onPress={() => setDateOpen(true)}>
+            <TouchableOpacity style={styles.saveButton} onPress={() => setStartDateTimeOpen(true)}>
                 <Text style={styles.saveButtonText}>Save</Text>
               </TouchableOpacity>
         </View>
@@ -256,4 +276,4 @@ const LogCalorieIntake = () => {
   );
 };
 
-export default LogCalorieIntake;
+export default NewActivityScreen;

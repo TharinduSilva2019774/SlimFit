@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import CircularProgress from 'react-native-circular-progress-indicator';
 
 const DayItem = ({ day, date,isSelected, onSelect }) => {
   const style = isSelected ? styles.dayItemSelected : styles.dayItem;
@@ -17,7 +18,7 @@ const MealRecordCard = ({ mealName, stats, src }) => (
       <Text style={styles.mealRecordTitle}>{mealName}</Text>
       <Text style={styles.mealRecordStats}>{stats}</Text>
     </View>
-    <Image source={{ uri: src }} style={styles.mealRecordImage} />
+    {/* <Image source={{ uri: src }} style={styles.mealRecordImage} /> */}
   </View>
 );
 
@@ -35,6 +36,7 @@ const FitnessTrackerApp = () => {
   const mealRecords = [
     { mealName: 'Breakfast', stats: '275/300', src: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c598d0c5ad6ed0eea27e054f0d41c745b593c0595bc15249986d973167f9326a?apiKey=748f91a40ab04acf923d77b5c15f23f6&' },
     { mealName: 'Lunch', stats: '475/400', src: 'https://cdn.builder.io/api/v1/image/assets/TEMP/5dc24ed323109ebff961a17d73348225600db9480353f3fc77d48f5668361c05?apiKey=748f91a40ab04acf923d77b5c15f23f6&' },
+    { mealName: 'Dinner', stats: '475/400', src: 'https://cdn.builder.io/api/v1/image/assets/TEMP/5dc24ed323109ebff961a17d73348225600db9480353f3fc77d48f5668361c05?apiKey=748f91a40ab04acf923d77b5c15f23f6&' },
   ];
 
   const selectedDate = new Date();
@@ -74,7 +76,48 @@ const FitnessTrackerApp = () => {
         </View>
       </View>
       <View style={styles.mealRecordsContainer}>
-        <Text>test</Text>
+        <View style={{alignItems: 'center'}}>
+        <CircularProgress
+          value={60}
+          radius={84}
+          duration={2000}
+          progressValueColor={'#ecf0f1'}
+          maxValue={200}
+          title={'Active Calories'}
+          titleColor={'white'}
+          titleStyle={{fontSize: 13}}
+        />
+        
+        </View>
+
+        <View style={styles.activityRingContainer}>
+          <View style={{padding:35}}>
+            <CircularProgress
+                      value={60}
+                      radius={50}
+                      duration={2000}
+                      progressValueColor={'#ecf0f1'}
+                      maxValue={200}
+                      title={'Active Time'}
+                      titleColor={'white'}
+                      titleStyle={{fontSize: 12}}
+                    />
+          </View>
+          <View style={{padding:35}}>
+                <CircularProgress
+                  value={60}
+                  radius={50}
+                  duration={2000}
+                  progressValueColor={'#ecf0f1'}
+                  maxValue={200}
+                  title={'Target '}
+                  titleColor={'white'}
+                  titleStyle={{fontSize: 12}}
+                />
+          </View>
+        </View>
+        
+
         {/* <View style={styles.activityRingContainer}>
           <Image
             source={{ uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/6e34673465d2879a78df60a1304a8343f3d21e1ae3ab7c9bc310d85cf7a8d1fa?apiKey=748f91a40ab04acf923d77b5c15f23f6&" }}
@@ -154,20 +197,7 @@ const styles = StyleSheet.create({
   activityRingContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 176,
-    height: 176,
-    borderRadius: 9999,
-    borderWidth: 8,
-    borderColor: '#A3E635',
-    marginBottom: 32,
-  },
-  activityRing: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    borderRadius: 9999,
+    flexDirection: 'row',
   },
   activityRingTextContainer: {
     position: 'absolute',
