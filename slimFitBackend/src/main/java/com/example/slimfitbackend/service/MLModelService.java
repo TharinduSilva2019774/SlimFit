@@ -10,7 +10,6 @@ import java.util.Map;
 @Service
 public class MLModelService {
     private static final Model model = Model.fromFile("./src/main/resources/models/linear_regression_model.pmml");
-
     private static Object getRegressionValue(Map<String, Double> values) {
         Object[] valuesMap = Arrays.stream(model.inputNames())
                 .map(values::get)
@@ -19,7 +18,6 @@ public class MLModelService {
         Object[] result = model.predict(valuesMap);
         return result[0];
     }
-
     public static double getCalorie(){
         Map<String, Double> values = new HashMap<>();
         values.put("Gender", 1.0);

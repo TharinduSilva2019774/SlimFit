@@ -47,4 +47,115 @@ public class DailyCalorie {
 
     private Date date;
 
+    public long getDailyCalorieId() {
+        return dailyCalorieId;
+    }
+
+    public void setDailyCalorieId(long dailyCalorieId) {
+        this.dailyCalorieId = dailyCalorieId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<IntakeRecord> getIntakeRecords() {
+        return intakeRecords;
+    }
+
+    public void setIntakeRecords(List<IntakeRecord> intakeRecords) {
+        this.intakeRecords = intakeRecords;
+    }
+
+    public long getBreakfastGoal() {
+        return breakfastGoal;
+    }
+
+    public void setBreakfastGoal(long breakfastGoal) {
+        this.breakfastGoal = breakfastGoal;
+    }
+
+    public long getBreakfastActual() {
+        return breakfastActual;
+    }
+
+    public void setBreakfastActual(long breakfastActual) {
+        this.breakfastActual = breakfastActual;
+    }
+
+    public long getLunchGoal() {
+        return lunchGoal;
+    }
+
+    public void setLunchGoal(long lunchGoal) {
+        this.lunchGoal = lunchGoal;
+    }
+
+    public long getLunchActual() {
+        return lunchActual;
+    }
+
+    public void setLunchActual(long lunchActual) {
+        this.lunchActual = lunchActual;
+    }
+
+    public long getDinnerGoal() {
+        return dinnerGoal;
+    }
+
+    public void setDinnerGoal(long dinnerGoal) {
+        this.dinnerGoal = dinnerGoal;
+    }
+
+    public long getDinnerActual() {
+        return dinnerActual;
+    }
+
+    public void setDinnerActual(long dinnerActual) {
+        this.dinnerActual = dinnerActual;
+    }
+
+    public long getSnackGoal() {
+        return snackGoal;
+    }
+
+    public void setSnackGoal(long snackGoal) {
+        this.snackGoal = snackGoal;
+    }
+
+    public long getSnackActual() {
+        return snackActual;
+    }
+
+    public void setSnackActual(long snackActual) {
+        this.snackActual = snackActual;
+    }
+
+    public long getDailyGoal() {
+        return dailyGoal;
+    }
+
+    public void setDailyGoal(long dailyGoal) {
+        this.dailyGoal = dailyGoal;
+    }
+
+    public long getDailyActual() {
+        return dailyActual;
+    }
+
+    public void setDailyActual(long dailyActual) {
+        this.dailyActual = dailyActual;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
