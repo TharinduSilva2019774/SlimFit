@@ -7,6 +7,7 @@ import SettingScreen from "../screens/SettingScreen";
 import { Ionicons } from "@expo/vector-icons";
 import Popup from "../assets/Popup";
 import ProgressScreen from "../screens/ProgressScreen/ProgressScreen";
+import CommunityScreen from "../screens/CommunityScreen/CommunityScreen";
 
 const Tab = createBottomTabNavigator();
 const TabMenu = ({ route }) => {
@@ -72,7 +73,7 @@ const TabMenu = ({ route }) => {
       />
       <Tab.Screen
         name="Community"
-        component={SettingScreen}
+        component={CommunityScreen}
         options={{ headerShown: false }}
       />
       <Tab.Screen

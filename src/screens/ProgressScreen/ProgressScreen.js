@@ -116,7 +116,7 @@ const ProgressScreen = () => {
   );
 
   return (
-    <KeyboardAvoidingView style={styles.scrollViewcontainer}>
+    <View style={styles.scrollViewcontainer}>
       <View style={styles.headerContainer}>
         <View style={styles.leftItem}>
           <Text style={styles.backTxt}>back</Text>
@@ -143,7 +143,7 @@ const ProgressScreen = () => {
           <RecordList records={records} />
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
