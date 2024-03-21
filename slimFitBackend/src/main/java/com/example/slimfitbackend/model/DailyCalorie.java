@@ -45,7 +45,27 @@ public class DailyCalorie {
 
     private long dailyActual;
 
+    private long dailyActivityGoal;
+
+    private long dailyActivityActual;
+
     private Date date;
+
+    public long getDailyActivityGoal() {
+        return dailyActivityGoal;
+    }
+
+    public void setDailyActivityGoal(long dailyActivityGoal) {
+        this.dailyActivityGoal = dailyActivityGoal;
+    }
+
+    public long getDailyActivityActual() {
+        return dailyActivityActual;
+    }
+
+    public void setDailyActivityActual(long dailyActivityActual) {
+        this.dailyActivityActual = dailyActivityActual;
+    }
 
     public long getDailyCalorieId() {
         return dailyCalorieId;

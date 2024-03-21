@@ -5,6 +5,7 @@ import com.example.slimfitbackend.payload.SaveUserRequest;
 import com.example.slimfitbackend.payload.common.MapStructMapper;
 import com.example.slimfitbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,6 +52,17 @@ public class UserService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public User getCurrentUser() throws Exception {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<User> optUser = userRepository.findByEmail(email);
+        if (optUser.isPresent()){
+            return optUser.get();
+        } else {
+            throw new Exception();
+        }
+
     }
 
 }

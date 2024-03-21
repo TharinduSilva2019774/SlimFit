@@ -25,7 +25,7 @@ public class SaveUserRequest {
 
     private int gender;
 
-    private double weeklyWeightLossGoal;
+    private int weeklyWeightLossGoal;
 
     private int dailyActivityGoal;
 
@@ -93,11 +93,11 @@ public class SaveUserRequest {
         this.gender = gender;
     }
 
-    public double getWeeklyWeightLossGoal() {
+    public int getWeeklyWeightLossGoal() {
         return weeklyWeightLossGoal;
     }
 
-    public void setWeeklyWeightLossGoal(double weeklyWeightLossGoal) {
+    public void setWeeklyWeightLossGoal(int weeklyWeightLossGoal) {
         this.weeklyWeightLossGoal = weeklyWeightLossGoal;
     }
 

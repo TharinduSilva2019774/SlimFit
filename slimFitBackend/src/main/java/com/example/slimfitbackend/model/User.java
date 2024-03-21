@@ -41,7 +41,7 @@ public class User implements UserDetails {
 
     private double bmr;
 
-    private double weeklyWeightLossGoal;
+    private int weeklyWeightLossGoal;
 
     private int dailyActivityGoal;
 
@@ -66,7 +66,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long userId, String email, String firstName, String lastName, int age, Date dateOfBirth, double height, double weight, int gender, double bmr, double weeklyWeightLossGoal, int dailyActivityGoal, String password, Role role, List<UserActivity> userActivities, List<WeightProgress> weightProgresses) {
+    public User(Long userId, String email, String firstName, String lastName, int age, Date dateOfBirth, double height, double weight, int gender, double bmr, int weeklyWeightLossGoal, int dailyActivityGoal, String password, Role role, List<UserActivity> userActivities, List<WeightProgress> weightProgresses) {
         this.userId = userId;
         this.email = email;
         this.firstName = firstName;
@@ -157,11 +157,11 @@ public class User implements UserDetails {
         this.bmr = bmr;
     }
 
-    public double getWeeklyWeightLossGoal() {
+    public int getWeeklyWeightLossGoal() {
         return weeklyWeightLossGoal;
     }
 
-    public void setWeeklyWeightLossGoal(double weeklyWeightLossGoal) {
+    public void setWeeklyWeightLossGoal(int weeklyWeightLossGoal) {
         this.weeklyWeightLossGoal = weeklyWeightLossGoal;
     }
 
