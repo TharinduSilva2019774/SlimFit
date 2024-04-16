@@ -1,19 +1,38 @@
 package com.example.slimfitbackend.service;
 
-import com.example.slimfitbackend.payload.FoodCalResponse;
-import com.example.slimfitbackend.payload.SearchFoodCalRequest;
-import com.example.slimfitbackend.payload.SearchFoodCalResponse;
+import com.example.slimfitbackend.model.DailyCalorie;
+import com.example.slimfitbackend.model.IntakeRecord;
+import com.example.slimfitbackend.model.User;
+import com.example.slimfitbackend.payload.*;
+import com.example.slimfitbackend.payload.common.MapStructMapper;
+import com.example.slimfitbackend.repository.ActivityTypeRepository;
+import com.example.slimfitbackend.repository.DailyCalorieRepository;
+import com.example.slimfitbackend.repository.IntakeRecordRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.json.JSONArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class IntakeRecordService {
+
+    @Autowired
+    private DailyCalorieService dailyCalorieService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private MapStructMapper mapStructMapper;
+
+    @Autowired
+    private IntakeRecordRepository intakeRecordRepository;
 
     public SearchFoodCalResponse getCalorieForFood(SearchFoodCalRequest searchFoodCalRequest) throws JsonProcessingException {
         String apiUrl = "https://api.edamam.com/api/food-database/parser?nutrition-type=logging&app_id=07d50733&app_key=80fcb49b500737827a9a23f7049653b9&ingr=" + searchFoodCalRequest.getFoodName();
@@ -40,14 +59,34 @@ public class IntakeRecordService {
             JSONObject hintFoodObject = hintJsonObject.getJSONObject("food");
             JSONObject hintNutrientsObject = hintFoodObject.getJSONObject("nutrients");
 
-            foodCalResponses.add(new FoodCalResponse(hintFoodObject.getString("label"),hintNutrientsObject.getDouble("ENERC_KCAL")));
+            foodCalResponses.add(new FoodCalResponse(hintFoodObject.getString("label"), hintNutrientsObject.getDouble("ENERC_KCAL")));
         }
 
-        return new SearchFoodCalResponse(new FoodCalResponse(name, enercKcal),foodCalResponses);
+        return new SearchFoodCalResponse(new FoodCalResponse(name, enercKcal), foodCalResponses);
     }
 
-    public boolean saveNewIntakeRecord() {
-        return true;
+    public IntakeRecordResponse saveNewIntakeRecord(IntakeRecordRequest intakeRecordRequest) throws Exception {
+
+        IntakeRecord intakeRecord = new IntakeRecord();
+        intakeRecord.setCalorieCount(intakeRecordRequest.getCalorieCount());
+        intakeRecord.setMealName(intakeRecordRequest.getMealName());
+        intakeRecord.setNote(intakeRecordRequest.getNote());
+        User user = userService.getCurrentUser();
+        DailyCalorie dailyCal = dailyCalorieService.getDailyCalorie(user, intakeRecordRequest.getDate());
+
+        switch ((int) intakeRecordRequest.getMeal()) {
+            case 1 ->
+                    dailyCal.setBreakfastActual(dailyCal.getBreakfastActual() + intakeRecordRequest.getCalorieCount());
+            case 2 -> dailyCal.setLunchActual(dailyCal.getLunchActual() + intakeRecordRequest.getCalorieCount());
+            case 3 -> dailyCal.setDinnerActual(dailyCal.getDinnerActual() + intakeRecordRequest.getCalorieCount());
+            case 4 -> dailyCal.setSnackActual(dailyCal.getSnackActual() + intakeRecordRequest.getCalorieCount());
+            default -> {
+            }
+        }
+
+        intakeRecord.setDailyCalorie(dailyCal);
+        intakeRecord = intakeRecordRepository.save(intakeRecord);
+        return mapStructMapper.itakeRecordToIntakeRecordResponse(intakeRecord);
     }
 
 }

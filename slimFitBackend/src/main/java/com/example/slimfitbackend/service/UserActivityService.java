@@ -48,9 +48,7 @@ public class UserActivityService {
         activityType.ifPresent(userActivity::setActivityType);
         userActivityRepository.save(userActivity);
 
-        Optional<DailyCalorie> dailyOpt = dailyCalorieRepository.findByDateAndUser(newActivityRequest.getDate(), user);
-        DailyCalorie daily;
-        daily = dailyOpt.orElseGet(() -> dailyCalorieService.createNewDailyCalorie(user, newActivityRequest.getDate()));
+        DailyCalorie daily = dailyCalorieService.getDailyCalorie(user,newActivityRequest.getDate());
         daily.setDailyActivityActual(daily.getDailyActivityActual() + newActivityRequest.getCalorie());
         daily.setDailyActual(daily.getDailyActual() + newActivityRequest.getCalorie());
         dailyCalorieRepository.save(daily);

@@ -24,33 +24,33 @@ public class DailyCalorieService {
     @Autowired
     private MapStructMapper mapStructMapper;
 
-    private int calorieDeficitPerToday(int weightLossPerWeekInG){
+    private int calorieDeficitPerToday(int weightLossPerWeekInG) {
 
-        if (weightLossPerWeekInG>500){
+        if (weightLossPerWeekInG > 500) {
             // throw exception not recommended
         }
 
         double weightLossPerWeekInKG = (double) weightLossPerWeekInG / 1000;
 
         int oneKGFat = 7700;
-        return (int) ((weightLossPerWeekInKG * oneKGFat)/7);
+        return (int) ((weightLossPerWeekInKG * oneKGFat) / 7);
     }
 
-    private void devideCaloriesForMeals(int calorieIntakePerDay, DailyCalorie dailyCalorie){
+    private void devideCaloriesForMeals(int calorieIntakePerDay, DailyCalorie dailyCalorie) {
         // breakfast 25
         // lunch 30
         // dinner 30
         // snack 15
-        dailyCalorie.setBreakfastGoal((long) (calorieIntakePerDay * (25f/100f)));
+        dailyCalorie.setBreakfastGoal((long) (calorieIntakePerDay * (25f / 100f)));
         dailyCalorie.setBreakfastActual(0);
 
-        dailyCalorie.setLunchGoal((long) (calorieIntakePerDay * (30f/100f)));
+        dailyCalorie.setLunchGoal((long) (calorieIntakePerDay * (30f / 100f)));
         dailyCalorie.setLunchActual(0);
 
-        dailyCalorie.setDinnerGoal((long) (calorieIntakePerDay * (30f/100f)));
+        dailyCalorie.setDinnerGoal((long) (calorieIntakePerDay * (30f / 100f)));
         dailyCalorie.setDinnerActual(0);
 
-        dailyCalorie.setSnackGoal((long) (calorieIntakePerDay * (15f/100f)));
+        dailyCalorie.setSnackGoal((long) (calorieIntakePerDay * (15f / 100f)));
         dailyCalorie.setSnackActual(0);
 
         dailyCalorie.setDailyGoal(calorieIntakePerDay);
@@ -59,10 +59,10 @@ public class DailyCalorieService {
 
     public DailyCalorieResponseDto getDailyCalorieResponse(GetDailyCalorieDto getDailyCalorieDto) throws Exception {
         User user = userService.getCurrentUser();
-        Optional<DailyCalorie> optDailyCal = dailyCalorieRepository.findByDateAndUser(getDailyCalorieDto.getDate(),user);
+        Optional<DailyCalorie> optDailyCal = dailyCalorieRepository.findByDateAndUser(getDailyCalorieDto.getDate(), user);
         DailyCalorie dailyCalorie;
-        if(optDailyCal.isEmpty()){
-            dailyCalorie = createNewDailyCalorie(user,getDailyCalorieDto.getDate());
+        if (optDailyCal.isEmpty()) {
+            dailyCalorie = createNewDailyCalorie(user, getDailyCalorieDto.getDate());
             dailyCalorieRepository.save(dailyCalorie);
             return mapStructMapper.dailyCalorietoDailyCalorieResponseDto(dailyCalorie);
         }
@@ -70,13 +70,20 @@ public class DailyCalorieService {
         return mapStructMapper.dailyCalorietoDailyCalorieResponseDto(optDailyCal.get());
     }
 
-    public DailyCalorie createNewDailyCalorie(User user, Date date){
+    public DailyCalorie getDailyCalorie(User user, Date date) {
+        Optional<DailyCalorie> dailyOpt = dailyCalorieRepository.findByDateAndUser(date, user);
+        DailyCalorie daily;
+        daily = dailyOpt.orElseGet(() -> createNewDailyCalorie(user, date));
+        return daily;
+    }
+
+    private DailyCalorie createNewDailyCalorie(User user, Date date) {
         DailyCalorie dailyCalorie = new DailyCalorie();
         dailyCalorie.setUser(user);
         dailyCalorie.setDate(date);
         int calorieDeficit = calorieDeficitPerToday(user.getWeeklyWeightLossGoal());
         int dailyCalorieIntake = (int) (user.getBmr() - (calorieDeficit - user.getDailyActivityGoal()));
-        devideCaloriesForMeals(dailyCalorieIntake,dailyCalorie);
+        devideCaloriesForMeals(dailyCalorieIntake, dailyCalorie);
         dailyCalorie.setDailyActivityActual(0);
         dailyCalorie.setDailyActivityGoal(user.getDailyActivityGoal());
         dailyCalorie.setDailyActual(0);

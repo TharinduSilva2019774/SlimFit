@@ -23,4 +23,54 @@ public class IntakeRecord {
     private String MealName;
 
     private String note;
+
+    private long meal;
+
+    public long getIntakeRecordId() {
+        return IntakeRecordId;
+    }
+
+    public void setIntakeRecordId(long intakeRecordId) {
+        IntakeRecordId = intakeRecordId;
+    }
+
+    public DailyCalorie getDailyCalorie() {
+        return dailyCalorie;
+    }
+
+    public void setDailyCalorie(DailyCalorie dailyCalorie) {
+        this.dailyCalorie = dailyCalorie;
+    }
+
+    public long getCalorieCount() {
+        return calorieCount;
+    }
+
+    public void setCalorieCount(long calorieCount) {
+        this.calorieCount = calorieCount;
+    }
+
+    public String getMealName() {
+        return MealName;
+    }
+
+    public void setMealName(String mealName) {
+        MealName = mealName;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public long getMeal() {
+        return meal;
+    }
+
+    public void setMeal(long meal) {
+        this.meal = meal;
+    }
 }

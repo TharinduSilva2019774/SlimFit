@@ -2,7 +2,6 @@ package com.example.slimfitbackend.controller;
 
 import com.example.slimfitbackend.payload.NewActivityRequest;
 import com.example.slimfitbackend.payload.NewActivityResponse;
-import com.example.slimfitbackend.payload.SaveUserRequest;
 import com.example.slimfitbackend.service.UserActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
