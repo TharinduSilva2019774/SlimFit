@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  Image,
-  FlatList,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
 } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
+import { getToken, storeToken } from "../AsyncStorage";
+import DailyCalorieModel from "../../assets/models/DailyCalorieModel";
 
 const DayItem = ({ day, date, isSelected, onSelect }) => {
   const style = isSelected ? styles.dayItemSelected : styles.dayItem;
@@ -31,6 +31,53 @@ const MealRecordCard = ({ mealName, stats, src }) => (
 );
 
 const FitnessTrackerApp = ({ navigation }) => {
+  const [data, setData] = useState(null);
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const [mealRecords, setMealRecords] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      // Make your request here
+      const token = await getToken();
+      const response = await fetch(
+        "http://10.0.2.2:8080/api/v1/calorie/dailyDetails?date=2024-03-08",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const json = await response.json();
+      setData(json);
+      console.log(json);
+      // console.log(json.breakfastActual);
+      setMealRecords([
+        {
+          mealName: "Breakfast",
+          stats: json.breakfastActual + "/" + json.breakfastGoal,
+          src: "https://cdn.builder.io/api/v1/image/assets/TEMP/c598d0c5ad6ed0eea27e054f0d41c745b593c0595bc15249986d973167f9326a?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
+        },
+        {
+          mealName: "Lunch",
+          stats: json.lunchActual + "/" + json.lunchGoal,
+          src: "https://cdn.builder.io/api/v1/image/assets/TEMP/5dc24ed323109ebff961a17d73348225600db9480353f3fc77d48f5668361c05?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
+        },
+        {
+          mealName: "Dinner",
+          stats: json.dinnerActual + "/" + json.dinnerGoal,
+          src: "https://cdn.builder.io/api/v1/image/assets/TEMP/5dc24ed323109ebff961a17d73348225600db9480353f3fc77d48f5668361c05?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
+        },
+      ]);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
   const dailyStatistics = [
     { day: "M", date: "16", isActive: false },
     { day: "T", date: "17", isActive: false },
@@ -39,24 +86,6 @@ const FitnessTrackerApp = ({ navigation }) => {
     { day: "F", date: "20", isActive: false },
     { day: "S", date: "21", isActive: false },
     { day: "S", date: "22", isActive: false },
-  ];
-
-  const mealRecords = [
-    {
-      mealName: "Breakfast",
-      stats: "275/300",
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/c598d0c5ad6ed0eea27e054f0d41c745b593c0595bc15249986d973167f9326a?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
-    },
-    {
-      mealName: "Lunch",
-      stats: "475/400",
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/5dc24ed323109ebff961a17d73348225600db9480353f3fc77d48f5668361c05?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
-    },
-    {
-      mealName: "Dinner",
-      stats: "475/400",
-      src: "https://cdn.builder.io/api/v1/image/assets/TEMP/5dc24ed323109ebff961a17d73348225600db9480353f3fc77d48f5668361c05?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
-    },
   ];
 
   const selectedDate = new Date();
@@ -95,7 +124,7 @@ const FitnessTrackerApp = ({ navigation }) => {
       <View style={styles.mealRecordsContainer}>
         <View style={{ alignItems: "center" }}>
           <CircularProgress
-            value={60}
+            value={data != null ? data.dailyActual : 0}
             radius={84}
             duration={2000}
             progressValueColor={"#ecf0f1"}

@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
@@ -27,6 +28,7 @@ const ImageComponent = () => {
 };
 
 const SettingsScreen = () => {
+  var navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -56,7 +58,7 @@ const SettingsScreen = () => {
         <View style={styles.divider} />
       </View>
 
-      <SignOutButton onPress={() => console.log("Sign Out Pressed")} />
+      <SignOutButton onPress={() => navigation.navigate("SignIn")} />
     </View>
   );
 };

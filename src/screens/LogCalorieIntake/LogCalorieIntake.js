@@ -13,8 +13,10 @@ import {
 import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import DatePicker from "react-native-date-picker";
+import { useNavigation } from "@react-navigation/native";
 
 const LogCalorieIntake = () => {
+  const navigation = useNavigation();
   const [activityName, setActivityName] = useState("New Meal");
   const [selectFood, setSelectFood] = useState(null);
   const [selectMeal, setSelectmeal] = useState(null);
@@ -155,9 +157,12 @@ const LogCalorieIntake = () => {
   return (
     <KeyboardAvoidingView style={styles.scrollViewcontainer}>
       <View style={styles.headerContainer}>
-        <View style={styles.leftItem}>
+        <TouchableOpacity
+          style={styles.leftItem}
+          onPress={() => navigation.navigate("TabNavigator")}
+        >
           <Text style={styles.backTxt}>back</Text>
-        </View>
+        </TouchableOpacity>
         <View>
           <Text style={styles.titleTxt}>Log Calorie intake</Text>
         </View>

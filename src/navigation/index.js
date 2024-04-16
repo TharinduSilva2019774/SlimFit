@@ -5,6 +5,8 @@ import LogCalorieIntake from "../screens/LogCalorieIntake";
 import TabMenu from "../tabNav";
 import NewActivityScreen from "../screens/NewActivityScreen";
 import HomeScreen from "../screens/HomeScreen";
+import SignInScreen from "../screens/SignInScreen";
+import SignUpScreen from "../screens/SignUpScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +17,8 @@ const Navigation = () => {
         <Stack.Screen name="TabNavigator" component={TabMenu} />
         <Stack.Screen name="LogCal" component={LogCalorieIntake} />
         <Stack.Screen name="NewAct" component={NewActivityScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="SignIn" component={SignInScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
