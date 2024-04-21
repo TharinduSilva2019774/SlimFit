@@ -6,6 +6,8 @@ import com.example.slimfitbackend.model.User;
 import com.example.slimfitbackend.model.UserActivity;
 import com.example.slimfitbackend.payload.NewActivityRequest;
 import com.example.slimfitbackend.payload.NewActivityResponse;
+import com.example.slimfitbackend.payload.PredictCalorieRequest;
+import com.example.slimfitbackend.payload.PredictCalorieResponse;
 import com.example.slimfitbackend.payload.common.MapStructMapper;
 import com.example.slimfitbackend.repository.ActivityTypeRepository;
 import com.example.slimfitbackend.repository.DailyCalorieRepository;
@@ -36,6 +38,7 @@ public class UserActivityService {
     @Autowired
     private MapStructMapper mapStructMapper;
 
+
     public NewActivityResponse addNewActivity(NewActivityRequest newActivityRequest) throws Exception {
         UserActivity userActivity = new UserActivity();
         User user = userService.getCurrentUser();
@@ -54,5 +57,13 @@ public class UserActivityService {
         dailyCalorieRepository.save(daily);
 
         return mapStructMapper.userActivityToNewActivityResponse(userActivity);
+    }
+
+    public PredictCalorieResponse getPredictedCalForAct(PredictCalorieRequest predictCalorieRequest) throws Exception {
+        User user = userService.getCurrentUser();
+        double results = MLModelService.getCalorie(user.getGender(), user.getAge(), user.getHeight(), user.getWeight(), predictCalorieRequest.getDuration(), predictCalorieRequest.getActId(), predictCalorieRequest.getIntensity());
+        PredictCalorieResponse predictCalorieResponse = new PredictCalorieResponse();
+        predictCalorieResponse.setCalorie(results);
+        return predictCalorieResponse;
     }
 }
