@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
-import { getToken, storeToken } from "../AsyncStorage";
+import { getToken } from "../AsyncStorage";
 import DailyCalorieModel from "../../assets/models/DailyCalorieModel";
 
 const DayItem = ({ day, date, isSelected, onSelect }) => {

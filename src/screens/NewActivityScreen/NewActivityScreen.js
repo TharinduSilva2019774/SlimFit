@@ -6,17 +6,19 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
+  Button,
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import DatePicker from "react-native-date-picker";
 import { useNavigation } from "@react-navigation/native";
+import { getToken } from "../AsyncStorage";
 
 const NewActivityScreen = () => {
   const navigation = useNavigation();
 
   const [activityName, setActivityName] = useState("New Activity");
   const [selectActivityType, setSelectActivityType] = useState(null);
-  const [selectMeal, setSelectmeal] = useState(null);
+  const [selectIntensity, setSelectIntensity] = useState(0);
   const [caloriesBurned, setCaloriesBurned] = useState(0);
   const activityTypeData = [
     { label: "Walk", value: "1" },
@@ -24,7 +26,7 @@ const NewActivityScreen = () => {
     { label: "Yoga", value: "3" },
   ];
 
-  const intencityLevelData = [
+  const intensityLevelData = [
     { label: "Sedentary", value: "1" },
     { label: "Light", value: "2" },
     { label: "Moderate ", value: "3" },
@@ -134,6 +136,13 @@ const NewActivityScreen = () => {
       marginVertical: 12,
       color: "white",
     },
+    predButton: {
+      // Style your button here
+      // Example styles:
+      backgroundColor: "blue",
+      padding: 10,
+      borderRadius: 5,
+    },
     saveButton: {
       marginTop: "14%",
       backgroundColor: "#D0FD3E",
@@ -149,6 +158,37 @@ const NewActivityScreen = () => {
       fontWeight: "bold",
     },
   });
+
+  const getCal = async () => {
+    let duration = 0;
+    if (
+      selectIntensity != null ||
+      selectActivityType != null ||
+      startDateTime != null ||
+      endDateTime != null
+    ) {
+      try {
+        // Make your request here
+        const token = await getToken();
+        const response = await fetch(
+          `http://10.0.2.2:8080/api/v1/activity/calorie?intensity=${selectIntensity}&actId=${selectActivityType}&duration=${duration}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const json = await response.json();
+        setCaloriesBurned(json);
+        console.log(json);
+        // console.log(json.breakfastActual);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    } else {
+      console.log("test");
+    }
+  };
 
   return (
     <ScrollView style={styles.scrollViewcontainer}>
@@ -184,7 +224,7 @@ const NewActivityScreen = () => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Select Food"
+            placeholder="Select Activity type"
             placeholderTextColor="white"
             searchPlaceholder="Search..."
             iconColor="white"
@@ -199,19 +239,19 @@ const NewActivityScreen = () => {
         <View style={styles.inputField}>
           <Dropdown
             style={styles.dropdown}
-            data={intencityLevelData}
+            data={intensityLevelData}
             search
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Select intencity"
+            placeholder="Select intensity "
             iconColor="white"
             activeColor="white"
             placeholderStyle={{ color: "white" }}
             searchPlaceholder="Search..."
-            value={selectMeal}
+            value={selectIntensity}
             onChange={(item) => {
-              setSelectmeal(item.value);
+              setSelectIntensity(item.value);
             }}
           />
         </View>
@@ -271,13 +311,32 @@ const NewActivityScreen = () => {
           />
         </View>
 
-        <View style={styles.calInputField}>
+        <View
+          style={{
+            width: "80%",
+            height: "9%",
+            marginTop: 40,
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
           <TextInput
             style={styles.cal}
             // onChangeText={}
-            value={caloriesBurned > 0 ? caloriesBurned.toString() : "Calories"}
+            value={caloriesBurned > 0 ? caloriesBurned.toString() : ""}
             placeholder="Calories"
           />
+          <TouchableOpacity
+            style={{
+              backgroundColor: "green",
+              padding: 5,
+              borderRadius: 5,
+              margin: 10,
+            }}
+            onPress={getCal}
+          >
+            <Text>Calculate</Text>
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity
