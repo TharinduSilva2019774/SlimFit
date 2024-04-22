@@ -1,0 +1,1896 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="SkLearn2PMML package" version="0.103.3"/>
+		<Timestamp>2024-03-04T20:44:22Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension name="repr">PMMLPipeline(steps=[('preprocessor', ColumnTransformer(remainder='passthrough',
+                  transformers=[('cat',
+                                 OneHotEncoder(drop='first',
+                                               sparse_output=False),
+                                 ['Gender', 'Exercise_type_num', 'Intensity'])])),
+       ('poly', PolynomialFeatures()),
+       ('model', LinearRegression())])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="Calories" optype="continuous" dataType="double"/>
+		<DataField name="Gender" optype="categorical" dataType="integer">
+			<Value value="1"/>
+			<Value value="2"/>
+		</DataField>
+		<DataField name="Age" optype="continuous" dataType="double"/>
+		<DataField name="Height" optype="continuous" dataType="double"/>
+		<DataField name="Weight" optype="continuous" dataType="double"/>
+		<DataField name="Duration" optype="continuous" dataType="double"/>
+		<DataField name="Exercise_type_num" optype="categorical" dataType="integer">
+			<Value value="1"/>
+			<Value value="2"/>
+			<Value value="3"/>
+			<Value value="4"/>
+			<Value value="5"/>
+			<Value value="6"/>
+			<Value value="7"/>
+			<Value value="8"/>
+			<Value value="9"/>
+			<Value value="10"/>
+			<Value value="11"/>
+			<Value value="12"/>
+			<Value value="13"/>
+			<Value value="14"/>
+			<Value value="15"/>
+			<Value value="16"/>
+			<Value value="17"/>
+			<Value value="18"/>
+			<Value value="19"/>
+			<Value value="20"/>
+			<Value value="21"/>
+			<Value value="22"/>
+			<Value value="23"/>
+			<Value value="24"/>
+			<Value value="25"/>
+			<Value value="26"/>
+			<Value value="27"/>
+			<Value value="28"/>
+			<Value value="29"/>
+			<Value value="30"/>
+			<Value value="31"/>
+			<Value value="32"/>
+			<Value value="33"/>
+		</DataField>
+		<DataField name="Intensity" optype="categorical" dataType="integer">
+			<Value value="1"/>
+			<Value value="2"/>
+			<Value value="3"/>
+			<Value value="4"/>
+		</DataField>
+	</DataDictionary>
+	<RegressionModel functionName="regression" algorithmName="sklearn.linear_model._base.LinearRegression">
+		<MiningSchema>
+			<MiningField name="Calories" usageType="target"/>
+			<MiningField name="Gender"/>
+			<MiningField name="Age"/>
+			<MiningField name="Height"/>
+			<MiningField name="Weight"/>
+			<MiningField name="Duration"/>
+			<MiningField name="Exercise_type_num"/>
+			<MiningField name="Intensity"/>
+		</MiningSchema>
+		<LocalTransformations>
+			<DerivedField name="Gender=2" optype="continuous" dataType="double">
+				<NormDiscrete field="Gender" value="2"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=2" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="2"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=3" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="3"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=4" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="4"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=5" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="5"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=6" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="6"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=7" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="7"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=8" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="8"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=9" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="9"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=10" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="10"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=11" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="11"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=12" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="12"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=13" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="13"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=14" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="14"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=15" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="15"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=16" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="16"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=17" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="17"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=18" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="18"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=19" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="19"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=20" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="20"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=21" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="21"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=22" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="22"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=23" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="23"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=24" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="24"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=25" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="25"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=26" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="26"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=27" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="27"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=28" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="28"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=29" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="29"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=30" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="30"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=31" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="31"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=32" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="32"/>
+			</DerivedField>
+			<DerivedField name="Exercise_type_num=33" optype="continuous" dataType="double">
+				<NormDiscrete field="Exercise_type_num" value="33"/>
+			</DerivedField>
+			<DerivedField name="Intensity=2" optype="continuous" dataType="double">
+				<NormDiscrete field="Intensity" value="2"/>
+			</DerivedField>
+			<DerivedField name="Intensity=3" optype="continuous" dataType="double">
+				<NormDiscrete field="Intensity" value="3"/>
+			</DerivedField>
+			<DerivedField name="Intensity=4" optype="continuous" dataType="double">
+				<NormDiscrete field="Intensity" value="4"/>
+			</DerivedField>
+		</LocalTransformations>
+		<RegressionTable intercept="-2.3402064481623777">
+			<NumericPredictor name="Age" coefficient="0.018695645316095355"/>
+			<NumericPredictor name="Height" coefficient="-0.07334449704849173"/>
+			<NumericPredictor name="Weight" coefficient="1.967218932628144"/>
+			<NumericPredictor name="Duration" coefficient="2.012503984358873"/>
+			<NumericPredictor name="Age" exponent="2" coefficient="-6.087458835608572E-4"/>
+			<NumericPredictor name="Height" exponent="2" coefficient="-2.700997395362892E-4"/>
+			<NumericPredictor name="Weight" exponent="2" coefficient="-0.0018913695148139453"/>
+			<NumericPredictor name="Duration" exponent="2" coefficient="-0.06833734066787978"/>
+			<CategoricalPredictor name="Gender" value="2" coefficient="-2.4863776458215847"/>
+			<CategoricalPredictor name="Exercise_type_num" value="2" coefficient="3.8399278690683323"/>
+			<CategoricalPredictor name="Exercise_type_num" value="3" coefficient="-7.248526488910708"/>
+			<CategoricalPredictor name="Exercise_type_num" value="4" coefficient="8.641200909024603"/>
+			<CategoricalPredictor name="Exercise_type_num" value="5" coefficient="2.0031195193778837"/>
+			<CategoricalPredictor name="Exercise_type_num" value="6" coefficient="-4.009974409876293"/>
+			<CategoricalPredictor name="Exercise_type_num" value="7" coefficient="6.986290078487407"/>
+			<CategoricalPredictor name="Exercise_type_num" value="8" coefficient="5.390707099192106"/>
+			<CategoricalPredictor name="Exercise_type_num" value="9" coefficient="3.7994987484161316"/>
+			<CategoricalPredictor name="Exercise_type_num" value="10" coefficient="-9.568504682551175"/>
+			<CategoricalPredictor name="Exercise_type_num" value="11" coefficient="7.30596066413138"/>
+			<CategoricalPredictor name="Exercise_type_num" value="12" coefficient="3.958743944480893"/>
+			<CategoricalPredictor name="Exercise_type_num" value="13" coefficient="-7.032189038511043"/>
+			<CategoricalPredictor name="Exercise_type_num" value="14" coefficient="3.466354372913055"/>
+			<CategoricalPredictor name="Exercise_type_num" value="15" coefficient="-3.429885957168314"/>
+			<CategoricalPredictor name="Exercise_type_num" value="16" coefficient="9.755874819596848"/>
+			<CategoricalPredictor name="Exercise_type_num" value="17" coefficient="5.527822015882758"/>
+			<CategoricalPredictor name="Exercise_type_num" value="18" coefficient="-7.641433096759445"/>
+			<CategoricalPredictor name="Exercise_type_num" value="19" coefficient="11.861183128449001"/>
+			<CategoricalPredictor name="Exercise_type_num" value="20" coefficient="6.029805633416157"/>
+			<CategoricalPredictor name="Exercise_type_num" value="21" coefficient="5.423412209041874"/>
+			<CategoricalPredictor name="Exercise_type_num" value="22" coefficient="-5.420913023063428"/>
+			<CategoricalPredictor name="Exercise_type_num" value="23" coefficient="3.228901154802196"/>
+			<CategoricalPredictor name="Exercise_type_num" value="24" coefficient="3.7472597734733126"/>
+			<CategoricalPredictor name="Exercise_type_num" value="25" coefficient="-0.2082199204434698"/>
+			<CategoricalPredictor name="Exercise_type_num" value="26" coefficient="3.291604491592567"/>
+			<CategoricalPredictor name="Exercise_type_num" value="27" coefficient="-14.709215537693337"/>
+			<CategoricalPredictor name="Exercise_type_num" value="28" coefficient="2.9586008257671725"/>
+			<CategoricalPredictor name="Exercise_type_num" value="29" coefficient="0.6376123721477945"/>
+			<CategoricalPredictor name="Exercise_type_num" value="30" coefficient="-16.49181480412348"/>
+			<CategoricalPredictor name="Exercise_type_num" value="31" coefficient="-8.773619933550112"/>
+			<CategoricalPredictor name="Exercise_type_num" value="32" coefficient="-76.5538267817749"/>
+			<CategoricalPredictor name="Exercise_type_num" value="33" coefficient="5.7580433352511395"/>
+			<CategoricalPredictor name="Intensity" value="2" coefficient="4.234417776320045"/>
+			<CategoricalPredictor name="Intensity" value="3" coefficient="8.073173016323693"/>
+			<CategoricalPredictor name="Intensity" value="4" coefficient="18.759117086562775"/>
+			<PredictorTerm name="Gender=2:Exercise_type_num=2" coefficient="2.8620665175223614">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=3" coefficient="9.047233458548359">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=4" coefficient="2.5644469965161942">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=5" coefficient="3.9829580843737666">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=5"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=6" coefficient="-0.7097763140205369">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=6"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=7" coefficient="0.8634544910106368">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=7"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=8" coefficient="1.6076940194391098">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=8"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=9" coefficient="3.4524964611492273">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=9"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=10" coefficient="-0.6545631323209262">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=10"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=11" coefficient="2.7516668082747775">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=11"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=12" coefficient="-1.9446432818439536">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=12"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=13" coefficient="-3.2948568104156513">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=13"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=14" coefficient="3.0938150757185583">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=14"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=15" coefficient="-0.995565937592293">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=15"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=16" coefficient="1.0977474514737995">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=16"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=17" coefficient="1.3635327916635256">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=17"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=18" coefficient="-1.103796200136242">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=18"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=19" coefficient="2.9567211476373045">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=19"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=20" coefficient="2.8619322016558684">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=20"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=21" coefficient="1.401501280717139">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=21"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=22" coefficient="0.21959230753452538">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=22"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=23" coefficient="0.8553702807680347">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=23"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=24" coefficient="-1.2338625031365578">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=24"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=25" coefficient="4.105359795897308">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=25"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=26" coefficient="3.8692614665616">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=26"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=27" coefficient="-0.8205887684034373">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=27"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=28" coefficient="1.6415046837542602">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=28"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=29" coefficient="5.170604534478498">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=29"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=30" coefficient="-4.895778191111957">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=30"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=31" coefficient="-8.417097562322056">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=31"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=32" coefficient="-19.34973672394361">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=32"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Exercise_type_num=33" coefficient="3.251277505018952">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Exercise_type_num=33"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Intensity=2" coefficient="0.677461183483114">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Intensity=3" coefficient="0.6102505933163525">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Intensity=4" coefficient="-120.0870640684579">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Age" coefficient="-0.03333094329862174">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Height" coefficient="0.031176860043641064">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Weight" coefficient="-0.11106379324164628">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Gender=2:Duration" coefficient="0.25173352050620057">
+				<FieldRef field="Gender=2"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=3" coefficient="1.5054624213917123E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=4" coefficient="2.4220625505222415E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=5" coefficient="-1.9739765377835283E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=5"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=6" coefficient="-3.1890046159332996E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=6"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=7" coefficient="3.8768988019910466E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=7"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=8" coefficient="3.1259439481345908E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=8"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=9" coefficient="-2.3090418466154006E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=9"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=10" coefficient="2.234212814755665E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=10"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=11" coefficient="-6.462386181738111E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=11"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=12" coefficient="6.390443729742401E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=12"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=13" coefficient="-4.114264484655905E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=13"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=14" coefficient="1.7985612998927536E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=14"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=15" coefficient="8.362199821476679E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=15"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=16" coefficient="3.0480062918059048E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=16"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=17" coefficient="-2.3034907314922748E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=17"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=18" coefficient="1.2642109581406658E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=18"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=19" coefficient="-2.226663298188214E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=19"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=20" coefficient="3.7903014060702844E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=20"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=21" coefficient="1.4798162695228712E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=21"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=22" coefficient="-1.4710455076283324E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=22"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=23" coefficient="-9.158229730132916E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=23"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=24" coefficient="-1.5412116027846423E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=24"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=25" coefficient="-1.9469703627095214E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=25"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=26" coefficient="1.1977085989656189E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=26"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=27" coefficient="-2.777222896099829E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=27"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=28" coefficient="2.300271084720862E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=28"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=29" coefficient="2.864375403532904E-14">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=29"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=30" coefficient="-2.124633802225162E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=30"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=31" coefficient="7.572553695212036E-13">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=31"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=32" coefficient="-2.6354474158551966E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=32"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Exercise_type_num=33" coefficient="-2.1719570586498094E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Exercise_type_num=33"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Intensity=2" coefficient="-3.406249945974671">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Intensity=3" coefficient="-3.9716296023291067">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Intensity=4" coefficient="1.1703719590694384E-12">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Age" coefficient="0.07501835336552665">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Height" coefficient="0.07000208329134239">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Weight" coefficient="-1.1522573533716391">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=2:Duration" coefficient="-1.2859633073094803">
+				<FieldRef field="Exercise_type_num=2"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=4" coefficient="5.784261958297066E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=5" coefficient="-3.425038030968608E-14">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=5"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=6" coefficient="9.445777493510832E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=6"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=7" coefficient="6.590838985687242E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=7"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=8" coefficient="2.6547652964836743E-12">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=8"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=9" coefficient="-7.405187574249794E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=9"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=10" coefficient="2.494116024820414E-12">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=10"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=11" coefficient="-1.191269305422793E-12">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=11"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=12" coefficient="1.912581204521757E-12">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=12"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=13" coefficient="2.5979218776228663E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=13"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=14" coefficient="-1.130762150580722E-12">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=14"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=15" coefficient="8.122391648157645E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=15"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=16" coefficient="-3.312905505481467E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=16"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=17" coefficient="2.2137847111025621E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=17"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=18" coefficient="1.254552017826427E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=18"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=19" coefficient="-9.263700917472306E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=19"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=20" coefficient="-7.949196856316121E-14">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=20"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=21" coefficient="4.445332990599127E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=21"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=22" coefficient="-8.526512829121202E-14">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=22"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=23" coefficient="4.902744876744691E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=23"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=24" coefficient="-9.823253321883385E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=24"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=25" coefficient="-4.565237077258644E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=25"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=26" coefficient="8.997247391562269E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=26"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=27" coefficient="-2.0961010704922955E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=27"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=28" coefficient="1.2789769243681803E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=28"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=29" coefficient="1.8385293287792592E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=29"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=30" coefficient="-2.1760371282653068E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=30"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=31" coefficient="-1.3944401189291966E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=31"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=32" coefficient="-4.1033842990145786E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=32"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Exercise_type_num=33" coefficient="-8.850697952311748E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Exercise_type_num=33"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Intensity=2" coefficient="-4.285283524996147">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Intensity=3" coefficient="-6.31494856406789E-13">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Intensity=4" coefficient="2.6645352591003757E-14">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Age" coefficient="0.23689209375932663">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Height" coefficient="0.0411172942780853">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Weight" coefficient="-1.8233609159497364">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=3:Duration" coefficient="-0.27707307864974773">
+				<FieldRef field="Exercise_type_num=3"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=5" coefficient="6.165068455743494E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=5"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=6" coefficient="-7.022160630754115E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=6"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=7" coefficient="4.618527782440651E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=7"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=8" coefficient="-2.220446049250313E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=8"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=9" coefficient="4.4497738826976274E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=9"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=10" coefficient="5.3290705182007514E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=10"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=11" coefficient="-2.7533531010703882E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=11"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=12" coefficient="-4.2232883856740955E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=12"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=13" coefficient="1.341149413747189E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=13"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=14" coefficient="-9.07718344933528E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=14"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=15" coefficient="3.659295089164516E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=15"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=16" coefficient="-5.844214001626824E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=16"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=17" coefficient="-8.03523914072457E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=17"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=18" coefficient="3.810285420513537E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=18"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=19" coefficient="-6.838973831690964E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=19"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=20" coefficient="1.6342482922482304E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=20"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=21" coefficient="2.113864638886298E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=21"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=22" coefficient="-4.085620730620576E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=22"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=23" coefficient="-1.2256862191861728E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=23"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=24" coefficient="1.0480505352461478E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=24"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=25" coefficient="-4.440892098500626E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=25"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=26" coefficient="-2.4868995751603507E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=26"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=27" coefficient="2.0383694732117874E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=27"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=28" coefficient="-6.838973831690964E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=28"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=29" coefficient="1.6564527527407336E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=29"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=30" coefficient="3.894662370385049E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=30"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=31" coefficient="-2.311484337269576E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=31"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=32" coefficient="1.992850329202156E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=32"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Exercise_type_num=33" coefficient="-1.8030021919912542E-13">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Exercise_type_num=33"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Intensity=2" coefficient="-3.4674604250053807">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Intensity=3" coefficient="-3.117379208353078">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Intensity=4" coefficient="-7.904787935331115E-14">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Age" coefficient="0.06994527446606069">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Height" coefficient="0.04632161480392405">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Weight" coefficient="-1.222292495266915">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=4:Duration" coefficient="-1.416833017431714">
+				<FieldRef field="Exercise_type_num=4"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=6" coefficient="-1.3855583347321954E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=6"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=7" coefficient="-1.021405182655144E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=7"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=8" coefficient="1.0402789740737717E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=8"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=9" coefficient="2.860489622946716E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=9"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=10" coefficient="1.7275070263167436E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=10"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=11" coefficient="1.056932319443149E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=11"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=12" coefficient="-4.1300296516055823E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=12"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=13" coefficient="2.327027459614328E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=13"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=14" coefficient="-3.4661162828797387E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=14"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=15" coefficient="7.993605777301127E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=15"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=16" coefficient="2.942091015256665E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=16"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=17" coefficient="-2.1005419625907962E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=17"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=18" coefficient="-2.7977620220553945E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=18"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=19" coefficient="1.127986593019159E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=19"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=20" coefficient="-1.8118839761882555E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=20"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=21" coefficient="-5.329070518200751E-15">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=21"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=22" coefficient="-3.064215547965432E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=22"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=23" coefficient="1.1457501614131615E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=23"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=24" coefficient="1.971756091734278E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=24"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=25" coefficient="-2.984279490192421E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=25"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=26" coefficient="1.1013412404281553E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=26"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=27" coefficient="3.481659405224491E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=27"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=28" coefficient="-9.414691248821327E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=28"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=29" coefficient="1.9539925233402755E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=29"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=30" coefficient="-3.623767952376511E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=30"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=31" coefficient="-8.881784197001252E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=31"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=32" coefficient="-4.263256414560601E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=32"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Exercise_type_num=33" coefficient="-7.105427357601002E-15">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Exercise_type_num=33"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Intensity=2" coefficient="-6.100128088128591">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Intensity=3" coefficient="2.930988785010413E-14">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Intensity=4" coefficient="2.433608869978343E-13">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Age" coefficient="0.1088660049521813">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Height" coefficient="0.1080386683110417">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Weight" coefficient="-1.5489983920659096">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=5:Duration" coefficient="-2.1627404448091756">
+				<FieldRef field="Exercise_type_num=5"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=7" coefficient="-9.703349235223868E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=7"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=8" coefficient="4.063416270128073E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=8"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=9" coefficient="-1.9539925233402755E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=9"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=10" coefficient="2.0694557179012918E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=10"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=11" coefficient="-2.313704783318826E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=11"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=12" coefficient="2.233768725545815E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=12"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=13" coefficient="-6.630807014573747E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=13"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=14" coefficient="-1.4663964487127146E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=14"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=15" coefficient="1.4663270597736755E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=15"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=16" coefficient="-3.730349362740526E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=16"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=17" coefficient="8.881784197001252E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=17"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=18" coefficient="-6.217248937900877E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=18"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=19" coefficient="-9.414691248821327E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=19"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=20" coefficient="-4.2721381987576024E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=20"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=21" coefficient="-8.79296635503124E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=21"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=22" coefficient="-3.161915174132446E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=22"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=23" coefficient="1.5631940186722204E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=23"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=24" coefficient="-1.2434497875801753E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=24"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=25" coefficient="-1.9539925233402755E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=25"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=26" coefficient="1.2789769243681803E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=26"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=27" coefficient="2.2737367544323206E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=27"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=28" coefficient="8.171241461241152E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=28"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=29" coefficient="7.815970093361102E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=29"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=30" coefficient="-8.881784197001252E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=30"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=31" coefficient="7.105427357601002E-14">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=31"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=32" coefficient="3.206324095117452E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=32"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Exercise_type_num=33" coefficient="-1.9539925233402755E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Exercise_type_num=33"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Intensity=2" coefficient="-0.4219663696827246">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Intensity=3" coefficient="0.9453106142000153">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Intensity=4" coefficient="1.4210854715202004E-13">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Age" coefficient="0.010270879648256792">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Height" coefficient="0.0924397094076781">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Weight" coefficient="-0.4901153988860414">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=6:Duration" coefficient="-0.24732596375022442">
+				<FieldRef field="Exercise_type_num=6"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=8" coefficient="-2.3447910280083306E-13">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=8"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=9" coefficient="6.483702463810914E-14">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=9"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=10" coefficient="-2.2648549702353193E-14">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=10"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=11" coefficient="-8.881784197001252E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=11"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=12" coefficient="2.6645352591003757E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=12"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=15" coefficient="2.4424906541753444E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=15"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=16" coefficient="-5.329070518200751E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=16"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=18" coefficient="-8.881784197001252E-16">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=18"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=19" coefficient="-1.7763568394002505E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=19"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=21" coefficient="-1.7763568394002505E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=21"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=22" coefficient="1.7763568394002505E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=22"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=23" coefficient="2.6645352591003757E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=23"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=24" coefficient="-1.7763568394002505E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=24"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=26" coefficient="2.6645352591003757E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=26"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=27" coefficient="2.6645352591003757E-15">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=27"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=28" coefficient="8.881784197001252E-16">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=28"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=29" coefficient="8.881784197001252E-16">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=29"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Exercise_type_num=31" coefficient="1.4210854715202004E-14">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Exercise_type_num=31"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Intensity=2" coefficient="-2.3992408719717933">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Intensity=3" coefficient="-2.1355384994720934">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Age" coefficient="0.04434365249230365">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Height" coefficient="0.014190159645167455">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Weight" coefficient="-0.725006500370577">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=7:Duration" coefficient="-0.6174620698289006">
+				<FieldRef field="Exercise_type_num=7"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=8:Intensity=2" coefficient="-2.3838367910786014">
+				<FieldRef field="Exercise_type_num=8"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=8:Intensity=3" coefficient="-1.6376103953224215">
+				<FieldRef field="Exercise_type_num=8"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=8:Age" coefficient="0.04956347012665774">
+				<FieldRef field="Exercise_type_num=8"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=8:Height" coefficient="0.053146099953513826">
+				<FieldRef field="Exercise_type_num=8"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=8:Weight" coefficient="-0.9162313776048169">
+				<FieldRef field="Exercise_type_num=8"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=8:Duration" coefficient="-0.9123480669644624">
+				<FieldRef field="Exercise_type_num=8"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=9:Intensity=2" coefficient="-5.514286414862494">
+				<FieldRef field="Exercise_type_num=9"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=9:Age" coefficient="0.09551680686163877">
+				<FieldRef field="Exercise_type_num=9"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=9:Height" coefficient="0.09942495922112338">
+				<FieldRef field="Exercise_type_num=9"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=9:Weight" coefficient="-1.4582994932277606">
+				<FieldRef field="Exercise_type_num=9"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=9:Duration" coefficient="-2.0839112253305085">
+				<FieldRef field="Exercise_type_num=9"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=10:Intensity=2" coefficient="0.137290482336191">
+				<FieldRef field="Exercise_type_num=10"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=10:Intensity=3" coefficient="0.34197213132511334">
+				<FieldRef field="Exercise_type_num=10"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=10:Age" coefficient="-0.026291136294732897">
+				<FieldRef field="Exercise_type_num=10"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=10:Height" coefficient="0.09837843702378635">
+				<FieldRef field="Exercise_type_num=10"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=10:Weight" coefficient="0.1648499264271983">
+				<FieldRef field="Exercise_type_num=10"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=10:Duration" coefficient="0.0748461822894213">
+				<FieldRef field="Exercise_type_num=10"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=11:Intensity=2" coefficient="-4.588574332771216">
+				<FieldRef field="Exercise_type_num=11"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=11:Intensity=3" coefficient="-3.7820308093926287">
+				<FieldRef field="Exercise_type_num=11"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=11:Age" coefficient="0.0760819283542874">
+				<FieldRef field="Exercise_type_num=11"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=11:Height" coefficient="0.07639554231315493">
+				<FieldRef field="Exercise_type_num=11"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=11:Weight" coefficient="-1.341175082591067">
+				<FieldRef field="Exercise_type_num=11"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=11:Duration" coefficient="-1.8065592289386179">
+				<FieldRef field="Exercise_type_num=11"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=12:Intensity=2" coefficient="0.18186506364180233">
+				<FieldRef field="Exercise_type_num=12"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=12:Intensity=3" coefficient="1.940444979318691">
+				<FieldRef field="Exercise_type_num=12"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=12:Age" coefficient="-0.007263361743230723">
+				<FieldRef field="Exercise_type_num=12"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=12:Height" coefficient="-0.04259049378016666">
+				<FieldRef field="Exercise_type_num=12"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=12:Weight" coefficient="0.061400616660904905">
+				<FieldRef field="Exercise_type_num=12"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=12:Duration" coefficient="0.33191520486554726">
+				<FieldRef field="Exercise_type_num=12"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=13:Intensity=2" coefficient="1.4899993293861984">
+				<FieldRef field="Exercise_type_num=13"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=13:Intensity=3" coefficient="3.1440017422330078">
+				<FieldRef field="Exercise_type_num=13"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=13:Intensity=4" coefficient="-123.42114758611002">
+				<FieldRef field="Exercise_type_num=13"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=13:Age" coefficient="-0.031129212075905466">
+				<FieldRef field="Exercise_type_num=13"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=13:Height" coefficient="0.013098267190201351">
+				<FieldRef field="Exercise_type_num=13"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=13:Weight" coefficient="0.47672416761856895">
+				<FieldRef field="Exercise_type_num=13"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=13:Duration" coefficient="0.9132478154176635">
+				<FieldRef field="Exercise_type_num=13"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=14:Intensity=2" coefficient="-5.081680015323735">
+				<FieldRef field="Exercise_type_num=14"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=14:Age" coefficient="0.09998288928590132">
+				<FieldRef field="Exercise_type_num=14"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=14:Height" coefficient="0.11318488384134762">
+				<FieldRef field="Exercise_type_num=14"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=14:Weight" coefficient="-1.451853352887147">
+				<FieldRef field="Exercise_type_num=14"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=14:Duration" coefficient="-2.000290499764542">
+				<FieldRef field="Exercise_type_num=14"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=15:Intensity=2" coefficient="-2.037348371030593">
+				<FieldRef field="Exercise_type_num=15"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=15:Intensity=3" coefficient="-1.6770214013919593">
+				<FieldRef field="Exercise_type_num=15"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=15:Age" coefficient="0.042194959788519504">
+				<FieldRef field="Exercise_type_num=15"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=15:Height" coefficient="0.05046476137526201">
+				<FieldRef field="Exercise_type_num=15"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=15:Weight" coefficient="-0.2506740065147736">
+				<FieldRef field="Exercise_type_num=15"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=15:Duration" coefficient="-0.05186179940110133">
+				<FieldRef field="Exercise_type_num=15"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=16:Intensity=2" coefficient="-3.576997657987289">
+				<FieldRef field="Exercise_type_num=16"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=16:Intensity=3" coefficient="-2.7371292263925806">
+				<FieldRef field="Exercise_type_num=16"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=16:Age" coefficient="0.060306749838391016">
+				<FieldRef field="Exercise_type_num=16"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=16:Height" coefficient="0.029605732821940567">
+				<FieldRef field="Exercise_type_num=16"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=16:Weight" coefficient="-0.9554827328655254">
+				<FieldRef field="Exercise_type_num=16"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=16:Duration" coefficient="-1.0835553554792337">
+				<FieldRef field="Exercise_type_num=16"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=17:Intensity=2" coefficient="-2.779536360018694">
+				<FieldRef field="Exercise_type_num=17"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=17:Intensity=3" coefficient="-2.339234131400048">
+				<FieldRef field="Exercise_type_num=17"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=17:Age" coefficient="0.052123796173910275">
+				<FieldRef field="Exercise_type_num=17"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=17:Height" coefficient="0.03192923994772112">
+				<FieldRef field="Exercise_type_num=17"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=17:Weight" coefficient="-0.799970516700248">
+				<FieldRef field="Exercise_type_num=17"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=17:Duration" coefficient="-0.8066174165718516">
+				<FieldRef field="Exercise_type_num=17"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=18:Intensity=2" coefficient="-1.3391447519583122">
+				<FieldRef field="Exercise_type_num=18"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=18:Intensity=3" coefficient="-0.9789402683200975">
+				<FieldRef field="Exercise_type_num=18"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=18:Age" coefficient="0.012478386076611947">
+				<FieldRef field="Exercise_type_num=18"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=18:Height" coefficient="0.09350757763575168">
+				<FieldRef field="Exercise_type_num=18"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=18:Weight" coefficient="-0.18498249362231323">
+				<FieldRef field="Exercise_type_num=18"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=18:Duration" coefficient="-0.04287205651193668">
+				<FieldRef field="Exercise_type_num=18"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=19:Intensity=2" coefficient="-4.81284021377168">
+				<FieldRef field="Exercise_type_num=19"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=19:Age" coefficient="0.09361529400775903">
+				<FieldRef field="Exercise_type_num=19"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=19:Height" coefficient="0.007497386676623474">
+				<FieldRef field="Exercise_type_num=19"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=19:Weight" coefficient="-1.226811574332656">
+				<FieldRef field="Exercise_type_num=19"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=19:Duration" coefficient="-1.6309594221558879">
+				<FieldRef field="Exercise_type_num=19"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=20:Intensity=2" coefficient="-5.396450586002552">
+				<FieldRef field="Exercise_type_num=20"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=20:Intensity=3" coefficient="-6.629791744558971">
+				<FieldRef field="Exercise_type_num=20"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=20:Age" coefficient="0.08934042731212577">
+				<FieldRef field="Exercise_type_num=20"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=20:Height" coefficient="0.0852940631648007">
+				<FieldRef field="Exercise_type_num=20"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=20:Weight" coefficient="-1.3654681970920013">
+				<FieldRef field="Exercise_type_num=20"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=20:Duration" coefficient="-1.9906708740340227">
+				<FieldRef field="Exercise_type_num=20"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=21:Intensity=2" coefficient="-3.0339648496035525">
+				<FieldRef field="Exercise_type_num=21"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=21:Intensity=3" coefficient="-3.7004020452945365">
+				<FieldRef field="Exercise_type_num=21"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=21:Age" coefficient="0.06277558342092598">
+				<FieldRef field="Exercise_type_num=21"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=21:Height" coefficient="0.07707719887848175">
+				<FieldRef field="Exercise_type_num=21"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=21:Weight" coefficient="-1.1085347609877634">
+				<FieldRef field="Exercise_type_num=21"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=21:Duration" coefficient="-1.1992232493433754">
+				<FieldRef field="Exercise_type_num=21"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=22:Intensity=2" coefficient="-0.6914101734917917">
+				<FieldRef field="Exercise_type_num=22"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=22:Intensity=3" coefficient="0.2723358419612829">
+				<FieldRef field="Exercise_type_num=22"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=22:Age" coefficient="0.011983511378129474">
+				<FieldRef field="Exercise_type_num=22"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=22:Height" coefficient="0.1099331416018865">
+				<FieldRef field="Exercise_type_num=22"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=22:Weight" coefficient="-0.628639456602258">
+				<FieldRef field="Exercise_type_num=22"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=22:Duration" coefficient="-0.35212457389947605">
+				<FieldRef field="Exercise_type_num=22"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=23:Intensity=2" coefficient="-2.367969869479295">
+				<FieldRef field="Exercise_type_num=23"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=23:Intensity=3" coefficient="-1.8884141422014227">
+				<FieldRef field="Exercise_type_num=23"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=23:Age" coefficient="0.048643147521445385">
+				<FieldRef field="Exercise_type_num=23"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=23:Height" coefficient="0.03667777145483919">
+				<FieldRef field="Exercise_type_num=23"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=23:Weight" coefficient="-0.6536944790296445">
+				<FieldRef field="Exercise_type_num=23"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=23:Duration" coefficient="-0.5586959546678704">
+				<FieldRef field="Exercise_type_num=23"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=24:Intensity=2" coefficient="-1.0336606373938728">
+				<FieldRef field="Exercise_type_num=24"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=24:Intensity=3" coefficient="-0.06419954289209556">
+				<FieldRef field="Exercise_type_num=24"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=24:Age" coefficient="0.0025760281613145253">
+				<FieldRef field="Exercise_type_num=24"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=24:Height" coefficient="0.03489310795166567">
+				<FieldRef field="Exercise_type_num=24"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=24:Weight" coefficient="-0.3106392466943273">
+				<FieldRef field="Exercise_type_num=24"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=24:Duration" coefficient="-0.29255728885809584">
+				<FieldRef field="Exercise_type_num=24"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=25:Intensity=2" coefficient="-5.414508644101959">
+				<FieldRef field="Exercise_type_num=25"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=25:Age" coefficient="0.12676103943121242">
+				<FieldRef field="Exercise_type_num=25"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=25:Height" coefficient="0.12032374074753127">
+				<FieldRef field="Exercise_type_num=25"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=25:Weight" coefficient="-1.6589760250910848">
+				<FieldRef field="Exercise_type_num=25"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=25:Duration" coefficient="-2.2134631915679757">
+				<FieldRef field="Exercise_type_num=25"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=26:Intensity=2" coefficient="-6.416979934744576">
+				<FieldRef field="Exercise_type_num=26"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=26:Intensity=3" coefficient="-6.7208162734199375">
+				<FieldRef field="Exercise_type_num=26"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=26:Age" coefficient="0.11161481653229433">
+				<FieldRef field="Exercise_type_num=26"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=26:Height" coefficient="0.09996945899405874">
+				<FieldRef field="Exercise_type_num=26"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=26:Weight" coefficient="-1.5891715135974276">
+				<FieldRef field="Exercise_type_num=26"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=26:Duration" coefficient="-2.210002963846183">
+				<FieldRef field="Exercise_type_num=26"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=27:Intensity=2" coefficient="-1.095215962831595">
+				<FieldRef field="Exercise_type_num=27"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=27:Intensity=3" coefficient="-0.4763946082670005">
+				<FieldRef field="Exercise_type_num=27"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=27:Intensity=4" coefficient="-104.02557104360078">
+				<FieldRef field="Exercise_type_num=27"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=27:Age" coefficient="0.04335416802525549">
+				<FieldRef field="Exercise_type_num=27"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=27:Height" coefficient="0.07551878666014611">
+				<FieldRef field="Exercise_type_num=27"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=27:Weight" coefficient="0.2479360746379521">
+				<FieldRef field="Exercise_type_num=27"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=27:Duration" coefficient="0.46313425093794014">
+				<FieldRef field="Exercise_type_num=27"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=28:Intensity=2" coefficient="-3.339717300871149">
+				<FieldRef field="Exercise_type_num=28"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=28:Intensity=3" coefficient="-1.7070802616978016">
+				<FieldRef field="Exercise_type_num=28"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=28:Age" coefficient="0.06961549372837439">
+				<FieldRef field="Exercise_type_num=28"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=28:Height" coefficient="0.0905929536270742">
+				<FieldRef field="Exercise_type_num=28"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=28:Weight" coefficient="-1.0715904611188147">
+				<FieldRef field="Exercise_type_num=28"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=28:Duration" coefficient="-1.1093622662935188">
+				<FieldRef field="Exercise_type_num=28"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=29:Intensity=2" coefficient="-6.569755087600986">
+				<FieldRef field="Exercise_type_num=29"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=29:Age" coefficient="0.14407259396828742">
+				<FieldRef field="Exercise_type_num=29"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=29:Height" coefficient="0.08278053846187583">
+				<FieldRef field="Exercise_type_num=29"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=29:Weight" coefficient="-1.6845692570576292">
+				<FieldRef field="Exercise_type_num=29"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=29:Duration" coefficient="-2.1582942898346156">
+				<FieldRef field="Exercise_type_num=29"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=30:Intensity=2" coefficient="0.30044075087041794">
+				<FieldRef field="Exercise_type_num=30"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=30:Intensity=3" coefficient="1.1610390304517462">
+				<FieldRef field="Exercise_type_num=30"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=30:Intensity=4" coefficient="-72.34118191870766">
+				<FieldRef field="Exercise_type_num=30"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=30:Age" coefficient="-9.061709723938716E-4">
+				<FieldRef field="Exercise_type_num=30"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=30:Height" coefficient="0.14787474841607917">
+				<FieldRef field="Exercise_type_num=30"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=30:Weight" coefficient="0.3018062678474944">
+				<FieldRef field="Exercise_type_num=30"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=30:Duration" coefficient="0.5211674695513862">
+				<FieldRef field="Exercise_type_num=30"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=31:Intensity=2" coefficient="4.15261447631002">
+				<FieldRef field="Exercise_type_num=31"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=31:Intensity=3" coefficient="4.3791890632777">
+				<FieldRef field="Exercise_type_num=31"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=31:Age" coefficient="-0.07490347742428649">
+				<FieldRef field="Exercise_type_num=31"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=31:Height" coefficient="0.058531428609515324">
+				<FieldRef field="Exercise_type_num=31"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=31:Weight" coefficient="0.4503161165243006">
+				<FieldRef field="Exercise_type_num=31"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=31:Duration" coefficient="1.3016664087884762">
+				<FieldRef field="Exercise_type_num=31"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=32:Intensity=2" coefficient="19.273854312565536">
+				<FieldRef field="Exercise_type_num=32"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=32:Intensity=3" coefficient="34.5260758215802">
+				<FieldRef field="Exercise_type_num=32"/>
+				<FieldRef field="Intensity=3"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=32:Intensity=4" coefficient="-88.13675551223487">
+				<FieldRef field="Exercise_type_num=32"/>
+				<FieldRef field="Intensity=4"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=32:Age" coefficient="-0.20399590727954564">
+				<FieldRef field="Exercise_type_num=32"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=32:Height" coefficient="0.47361897582153123">
+				<FieldRef field="Exercise_type_num=32"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=32:Weight" coefficient="-2.238514208465138">
+				<FieldRef field="Exercise_type_num=32"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=32:Duration" coefficient="7.237931428448727">
+				<FieldRef field="Exercise_type_num=32"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=33:Intensity=2" coefficient="-5.202514401106699">
+				<FieldRef field="Exercise_type_num=33"/>
+				<FieldRef field="Intensity=2"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=33:Age" coefficient="0.1100887960312179">
+				<FieldRef field="Exercise_type_num=33"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=33:Height" coefficient="0.08204238633281591">
+				<FieldRef field="Exercise_type_num=33"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=33:Weight" coefficient="-1.49792306175973">
+				<FieldRef field="Exercise_type_num=33"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Exercise_type_num=33:Duration" coefficient="-2.101386163155467">
+				<FieldRef field="Exercise_type_num=33"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=2:Age" coefficient="2.728503288880191E-4">
+				<FieldRef field="Intensity=2"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=2:Height" coefficient="0.03051687924965929">
+				<FieldRef field="Intensity=2"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=2:Weight" coefficient="0.0038656123356841654">
+				<FieldRef field="Intensity=2"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=2:Duration" coefficient="-0.3243478971603331">
+				<FieldRef field="Intensity=2"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=3:Age" coefficient="-0.06579536102663663">
+				<FieldRef field="Intensity=3"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=3:Height" coefficient="0.07124861345031075">
+				<FieldRef field="Intensity=3"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=3:Weight" coefficient="-0.038861559981915095">
+				<FieldRef field="Intensity=3"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=3:Duration" coefficient="-0.4021037862478851">
+				<FieldRef field="Intensity=3"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=4:Age" coefficient="0.5716299232221211">
+				<FieldRef field="Intensity=4"/>
+				<FieldRef field="Age"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=4:Height" coefficient="1.2325637994881307">
+				<FieldRef field="Intensity=4"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=4:Weight" coefficient="-4.946630173217478">
+				<FieldRef field="Intensity=4"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Intensity=4:Duration" coefficient="9.969939960804657">
+				<FieldRef field="Intensity=4"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Age:Height" coefficient="-7.752417127608879E-4">
+				<FieldRef field="Age"/>
+				<FieldRef field="Height"/>
+			</PredictorTerm>
+			<PredictorTerm name="Age:Weight" coefficient="5.933933388593271E-4">
+				<FieldRef field="Age"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Age:Duration" coefficient="0.005104592186521373">
+				<FieldRef field="Age"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Height:Weight" coefficient="0.0012421546714018739">
+				<FieldRef field="Height"/>
+				<FieldRef field="Weight"/>
+			</PredictorTerm>
+			<PredictorTerm name="Height:Duration" coefficient="0.0017584200418483409">
+				<FieldRef field="Height"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+			<PredictorTerm name="Weight:Duration" coefficient="0.019608618879075834">
+				<FieldRef field="Weight"/>
+				<FieldRef field="Duration"/>
+			</PredictorTerm>
+		</RegressionTable>
+	</RegressionModel>
+</PMML>
