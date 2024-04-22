@@ -22,4 +22,19 @@ public class ActivityType {
     @OneToMany(mappedBy = "activityType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UserActivity> userActivities = new ArrayList<>();
 
+    public void setActId(Long actId) {
+        this.actId = actId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getActId() {
+        return actId;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

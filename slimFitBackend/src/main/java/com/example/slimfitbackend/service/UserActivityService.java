@@ -4,6 +4,7 @@ import com.example.slimfitbackend.model.ActivityType;
 import com.example.slimfitbackend.model.DailyCalorie;
 import com.example.slimfitbackend.model.User;
 import com.example.slimfitbackend.model.UserActivity;
+import com.example.slimfitbackend.payload.*;
 import com.example.slimfitbackend.payload.NewActivityRequest;
 import com.example.slimfitbackend.payload.NewActivityResponse;
 import com.example.slimfitbackend.payload.PredictCalorieRequest;
@@ -15,6 +16,8 @@ import com.example.slimfitbackend.repository.UserActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -65,5 +68,14 @@ public class UserActivityService {
         PredictCalorieResponse predictCalorieResponse = new PredictCalorieResponse();
         predictCalorieResponse.setCalorie(results);
         return predictCalorieResponse;
+    }
+
+    public List<GetActivitiesResponse> getActivities(){
+        List<ActivityType> activities = activityTypeRepository.findAll();
+        List<GetActivitiesResponse> getActivitiesResponseList = new ArrayList<>();
+        for (ActivityType activity : activities) {
+            getActivitiesResponseList.add(new GetActivitiesResponse(activity.getName(),activity.getActId()));
+        }
+        return getActivitiesResponseList;
     }
 }
