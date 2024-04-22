@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   TextInput,
   ScrollView,
   Button,
+  Modal,
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import DatePicker from "react-native-date-picker";
@@ -16,15 +17,10 @@ import { getToken } from "../AsyncStorage";
 const NewActivityScreen = () => {
   const navigation = useNavigation();
 
-  const [activityName, setActivityName] = useState("New Activity");
   const [selectActivityType, setSelectActivityType] = useState(null);
   const [selectIntensity, setSelectIntensity] = useState(0);
   const [caloriesBurned, setCaloriesBurned] = useState(0);
-  const activityTypeData = [
-    { label: "Walk", value: "1" },
-    { label: "Run", value: "2" },
-    { label: "Yoga", value: "3" },
-  ];
+  const [activityTypeData, setActivityTypeData] = useState([]);
 
   const intensityLevelData = [
     { label: "Sedentary", value: "1" },
@@ -33,14 +29,17 @@ const NewActivityScreen = () => {
     { label: "Intense ", value: "4" },
     { label: "Very Intense  ", value: "5" },
   ];
-  const [startDateTime, setStartDateTime] = useState(new Date());
-  const [startDateTimeOpen, setStartDateTimeOpen] = useState(false);
+  const [startTime, setStartTime] = useState(new Date());
+  const [startTimeOpen, setStartTimeOpen] = useState(false);
 
-  const [endDateTime, setEndDateTime] = useState(new Date());
-  const [endDateTimeOpen, setEndDateTimeOpen] = useState(false);
+  const [endTime, setEndTime] = useState(new Date());
+  const [endTimeOpen, setEndTimeOpen] = useState(false);
+
+  const [date, setDate] = useState(new Date());
+  const [dateOpen, setDateOpen] = useState(false);
 
   const [note, setNote] = useState("");
-
+  const [modalVisible, setModalVisible] = useState(false);
   const styles = StyleSheet.create({
     //Main container styles
     scrollViewcontainer: {
@@ -159,16 +158,50 @@ const NewActivityScreen = () => {
     },
   });
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const token = await getToken();
+      const response = await fetch(
+        "http://10.0.2.2:8080/api/v1/activity/activities",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const json = await response.json();
+      json.map((item, index) => {
+        activityTypeData.push({ label: item.label, value: item.value });
+      });
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  const getDuration = () => {
+    let differenceInMilliseconds = -1;
+    let differenceInMinutes = -1;
+    if (startTime != null && endTime != null && startTime < endTime) {
+      differenceInMilliseconds = Math.abs(startTime - endTime);
+      differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60));
+    }
+    return differenceInMinutes;
+  };
+
   const getCal = async () => {
-    let duration = 0;
+    let duration = getDuration();
     if (
-      selectIntensity != null ||
-      selectActivityType != null ||
-      startDateTime != null ||
-      endDateTime != null
+      selectIntensity != null &&
+      selectActivityType != null &&
+      startTime != null &&
+      endTime != null &&
+      duration > 0
     ) {
       try {
-        // Make your request here
         const token = await getToken();
         const response = await fetch(
           `http://10.0.2.2:8080/api/v1/activity/calorie?intensity=${selectIntensity}&actId=${selectActivityType}&duration=${duration}`,
@@ -179,19 +212,90 @@ const NewActivityScreen = () => {
           }
         );
         const json = await response.json();
-        setCaloriesBurned(json);
-        console.log(json);
-        // console.log(json.breakfastActual);
+        console.log("cal : " + parseFloat(json.calorie.toFixed(0)));
+        setCaloriesBurned(parseFloat(json.calorie.toFixed(0)));
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
     } else {
-      console.log("test");
+      setModalVisible(true);
+    }
+  };
+
+  const saveAct = async () => {
+    const differenceInMinutes = getDuration();
+    if (
+      selectActivityType != null &&
+      selectIntensity != null &&
+      caloriesBurned != null &&
+      differenceInMinutes > 0 &&
+      date != null
+    ) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so add 1
+      const day = String(date.getDate()).padStart(2, "0");
+      const token = await getToken();
+      fetch("http://10.0.2.2:8080/api/v1/activity/newActivity", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          activityType: selectActivityType,
+          calorie: caloriesBurned,
+          duration: differenceInMinutes,
+          intensity: selectIntensity,
+          date: `${year}-${month}-${day}`,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } else {
+      console.log("nuh uh");
     }
   };
 
   return (
     <ScrollView style={styles.scrollViewcontainer}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <View
+            style={{ backgroundColor: "white", padding: 20, borderRadius: 10 }}
+          >
+            <Text>You need to fill the following fields : </Text>
+            <Text>--Activity Type</Text>
+            <Text>--Intensity</Text>
+            <Text>--Start and end time</Text>
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
       <View style={styles.headerContainer}>
         <TouchableOpacity
           style={styles.leftItem}
@@ -207,15 +311,6 @@ const NewActivityScreen = () => {
         </View>
       </View>
       <View style={styles.container}>
-        <View style={styles.inputField}>
-          <TextInput
-            style={styles.input}
-            // onChangeText={}
-            value={activityName}
-            placeholder="New Activity"
-            placeholderTextColor="white"
-          />
-        </View>
         <View style={styles.inputField}>
           <Dropdown
             style={styles.dropdown}
@@ -258,44 +353,77 @@ const NewActivityScreen = () => {
         <View style={styles.inputField}>
           <TouchableOpacity
             style={styles.dateButton}
-            onPress={() => setStartDateTimeOpen(true)}
+            onPress={() => setDateOpen(true)}
           >
             <Text style={{ color: "white" }}>
-              Start time : {startDateTime.toDateString()}
+              Date : {startTime.toDateString()}
             </Text>
           </TouchableOpacity>
           <DatePicker
             modal
-            open={startDateTimeOpen}
-            date={startDateTime}
+            open={dateOpen}
+            date={date}
+            mode="date"
             onConfirm={(date) => {
-              setStartDateTimeOpen(false);
-              setStartDateTime(date);
+              setDateOpen(false);
+              setDate(date);
             }}
             onCancel={() => {
-              setStartDateTimeOpen(false);
+              setDateOpen(false);
             }}
           />
         </View>
         <View style={styles.inputField}>
           <TouchableOpacity
             style={styles.dateButton}
-            onPress={() => setEndDateTimeOpen(true)}
+            onPress={() => setStartTimeOpen(true)}
           >
             <Text style={{ color: "white" }}>
-              End time : {endDateTime.toDateString()}
+              Start time :{" "}
+              {startTime.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
             </Text>
           </TouchableOpacity>
           <DatePicker
             modal
-            open={endDateTimeOpen}
-            date={endDateTime}
+            open={startTimeOpen}
+            date={startTime}
+            mode="time"
             onConfirm={(date) => {
-              setEndDateTimeOpen(false);
-              setEndDateTime(date);
+              setStartTimeOpen(false);
+              setStartTime(date);
             }}
             onCancel={() => {
-              setEndDateTimeOpen(false);
+              setStartTimeOpen(false);
+            }}
+          />
+        </View>
+        <View style={styles.inputField}>
+          <TouchableOpacity
+            style={styles.dateButton}
+            onPress={() => setEndTimeOpen(true)}
+          >
+            <Text style={{ color: "white" }}>
+              End time :{" "}
+              {endTime.toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </Text>
+          </TouchableOpacity>
+          <DatePicker
+            modal
+            open={endTimeOpen}
+            date={endTime}
+            mode="time"
+            onConfirm={(date) => {
+              setEndTimeOpen(false);
+              setEndTime(date);
+            }}
+            onCancel={() => {
+              setEndTimeOpen(false);
             }}
           />
         </View>
@@ -322,7 +450,7 @@ const NewActivityScreen = () => {
         >
           <TextInput
             style={styles.cal}
-            // onChangeText={}
+            onChangeText={setCaloriesBurned}
             value={caloriesBurned > 0 ? caloriesBurned.toString() : ""}
             placeholder="Calories"
           />
@@ -339,10 +467,7 @@ const NewActivityScreen = () => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={() => setStartDateTimeOpen(true)}
-        >
+        <TouchableOpacity style={styles.saveButton} onPress={saveAct}>
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       </View>
