@@ -1,6 +1,7 @@
 package com.example.slimfitbackend.service;
 
 import com.example.slimfitbackend.model.User;
+import com.example.slimfitbackend.payload.GetUserResponse;
 import com.example.slimfitbackend.payload.SaveUserRequest;
 import com.example.slimfitbackend.payload.common.MapStructMapper;
 import com.example.slimfitbackend.repository.UserRepository;
@@ -63,6 +64,10 @@ public class UserService {
             throw new Exception();
         }
 
+    }
+
+    public GetUserResponse getUser() throws Exception {
+        return mapStructMapper.userToGetUserResponse(getCurrentUser());
     }
 
 }

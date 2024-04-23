@@ -1,14 +1,11 @@
 package com.example.slimfitbackend.payload.common;
 
-import com.example.slimfitbackend.model.DailyCalorie;
-import com.example.slimfitbackend.model.IntakeRecord;
-import com.example.slimfitbackend.model.User;
-import com.example.slimfitbackend.model.UserActivity;
-import com.example.slimfitbackend.payload.IntakeRecordResponse;
-import com.example.slimfitbackend.payload.NewActivityResponse;
-import com.example.slimfitbackend.payload.SaveUserRequest;
-import com.example.slimfitbackend.payload.DailyCalorieResponseDto;
+import com.example.slimfitbackend.model.*;
+import com.example.slimfitbackend.payload.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface MapStructMapper {
@@ -20,5 +17,10 @@ public interface MapStructMapper {
     NewActivityResponse userActivityToNewActivityResponse(UserActivity userActivity);
 
     IntakeRecordResponse itakeRecordToIntakeRecordResponse(IntakeRecord intakeRecord);
+
+    @Mapping(target = "username", ignore = true)
+    MessageResponse messageToMessageResponse(Message messages);
+
+    GetUserResponse userToGetUserResponse(User user);
 
 }
