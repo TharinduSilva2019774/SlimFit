@@ -40,6 +40,8 @@ const NewActivityScreen = () => {
 
   const [note, setNote] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [duration, setDuration] = useState(0);
   const styles = StyleSheet.create({
     //Main container styles
     scrollViewcontainer: {
@@ -143,7 +145,7 @@ const NewActivityScreen = () => {
       borderRadius: 5,
     },
     saveButton: {
-      marginTop: "14%",
+      marginTop: "12%",
       backgroundColor: "#D0FD3E",
       borderRadius: 30,
       width: "60%",
@@ -161,6 +163,10 @@ const NewActivityScreen = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    setDuration(getDuration);
+  }, [startTime, endTime]);
 
   const fetchData = async () => {
     try {
@@ -183,8 +189,8 @@ const NewActivityScreen = () => {
   };
 
   const getDuration = () => {
-    let differenceInMilliseconds = -1;
-    let differenceInMinutes = -1;
+    let differenceInMilliseconds = 0;
+    let differenceInMinutes = 0;
     if (startTime != null && endTime != null && startTime < endTime) {
       differenceInMilliseconds = Math.abs(startTime - endTime);
       differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60));
@@ -193,7 +199,6 @@ const NewActivityScreen = () => {
   };
 
   const getCal = async () => {
-    let duration = getDuration();
     if (
       selectIntensity != null &&
       selectActivityType != null &&
@@ -223,12 +228,11 @@ const NewActivityScreen = () => {
   };
 
   const saveAct = async () => {
-    const differenceInMinutes = getDuration();
     if (
       selectActivityType != null &&
       selectIntensity != null &&
       caloriesBurned != null &&
-      differenceInMinutes > 0 &&
+      duration > 0 &&
       date != null
     ) {
       const year = date.getFullYear();
@@ -400,6 +404,7 @@ const NewActivityScreen = () => {
             }}
           />
         </View>
+        <Text style={{ color: "white" }}>duration : {duration} minutes</Text>
         <View style={styles.inputField}>
           <TouchableOpacity
             style={styles.dateButton}

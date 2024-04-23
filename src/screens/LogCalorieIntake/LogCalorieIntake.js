@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   StyleSheet,
   TextInput,
-  ScrollView,
   KeyboardAvoidingView,
-  Button,
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import DatePicker from "react-native-date-picker";
 import { useNavigation } from "@react-navigation/native";
 
@@ -204,7 +200,6 @@ const LogCalorieIntake = () => {
           <Dropdown
             style={styles.dropdown}
             data={mealData}
-            search
             maxHeight={300}
             labelField="label"
             valueField="value"

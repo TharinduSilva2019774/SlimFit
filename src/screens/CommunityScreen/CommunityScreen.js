@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Modal } from "react-native";
-
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { getToken } from "../AsyncStorage";
 
 const Message = ({ message, isUser }) => {
   return (
@@ -20,12 +20,82 @@ const Message = ({ message, isUser }) => {
 const CommunityScreen = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
+  const [currentUserName, setCurrentUserName] = useState("");
 
-  const sendMessage = () => {
+  const addMessage = (newMessage) => {
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchMessageData();
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(async () => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    const token = await getToken();
+    const response = await fetch("http://10.0.2.2:8080/api/v1/user", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const json = await response.json();
+    setCurrentUserName(json.firstName);
+  };
+  const fetchMessageData = async () => {
+    try {
+      const token = await getToken();
+      const response = await fetch("http://10.0.2.2:8080/api/v1/message", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const json = await response.json();
+      setMessages([]);
+      json.map((item, index) => {
+        const newMessage = { sender: item.username, text: item.message };
+        addMessage(newMessage);
+      });
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  const sendMessage = async () => {
     if (inputText.trim() !== "") {
-      const newMessage = { sender: "You", text: inputText };
+      const newMessage = { sender: currentUserName, text: inputText };
       setMessages([...messages, newMessage]);
       setInputText("");
+
+      const token = await getToken();
+      fetch("http://10.0.2.2:8080/api/v1/message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          message: inputText,
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   };
 
@@ -47,7 +117,7 @@ const CommunityScreen = () => {
           <Message
             key={index}
             message={message}
-            isUser={message.sender === "You"}
+            isUser={message.sender === currentUserName}
           />
         ))}
       </ScrollView>

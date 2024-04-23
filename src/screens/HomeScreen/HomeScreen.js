@@ -41,7 +41,6 @@ const FitnessTrackerApp = ({ navigation }) => {
 
   const fetchData = async () => {
     try {
-      // Make your request here
       const token = await getToken();
       const response = await fetch(
         "http://10.0.2.2:8080/api/v1/calorie/dailyDetails?date=2024-03-08",
@@ -54,22 +53,21 @@ const FitnessTrackerApp = ({ navigation }) => {
       const json = await response.json();
       setData(json);
       console.log(json);
-      // console.log(json.breakfastActual);
       setMealRecords([
         {
           mealName: "Breakfast",
           stats: json.breakfastActual + "/" + json.breakfastGoal,
-          src: "https://cdn.builder.io/api/v1/image/assets/TEMP/c598d0c5ad6ed0eea27e054f0d41c745b593c0595bc15249986d973167f9326a?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
+          goalMet: json.breakfastActual <= json.breakfastGoal,
         },
         {
           mealName: "Lunch",
           stats: json.lunchActual + "/" + json.lunchGoal,
-          src: "https://cdn.builder.io/api/v1/image/assets/TEMP/5dc24ed323109ebff961a17d73348225600db9480353f3fc77d48f5668361c05?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
+          goalMet: json.lunchActual <= json.lunchGoal,
         },
         {
           mealName: "Dinner",
           stats: json.dinnerActual + "/" + json.dinnerGoal,
-          src: "https://cdn.builder.io/api/v1/image/assets/TEMP/5dc24ed323109ebff961a17d73348225600db9480353f3fc77d48f5668361c05?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
+          src: json.dinnerActual <= json.dinnerGoal,
         },
       ]);
     } catch (error) {
@@ -161,14 +159,16 @@ const FitnessTrackerApp = ({ navigation }) => {
           </View>
         </View>
         <Text style={styles.mealRecordsTitle}>Meal Records</Text>
-        {mealRecords.map((meal) => (
-          <MealRecordCard
-            key={meal.mealName}
-            mealName={meal.mealName}
-            stats={meal.stats}
-            src={meal.src}
-          />
-        ))}
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          {mealRecords.map((meal) => (
+            <MealRecordCard
+              key={meal.mealName}
+              mealName={meal.mealName}
+              stats={meal.stats}
+              src={meal.src}
+            />
+          ))}
+        </View>
       </View>
     </ScrollView>
   );
@@ -251,12 +251,13 @@ const styles = StyleSheet.create({
   },
   mealRecordCard: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     paddingHorizontal: 16,
     paddingVertical: 20,
     marginTop: 16,
     borderRadius: 8,
     backgroundColor: "#374151",
+    width: "32%",
   },
   mealRecordTitle: {
     fontSize: 18,
