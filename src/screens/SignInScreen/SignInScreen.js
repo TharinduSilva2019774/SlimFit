@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import axios from "axios";
-import { getToken, storeToken } from "../AsyncStorage";
+import { storeToken } from "../AsyncStorage";
 import {
   parseResponseToTokenPayload,
   tokenPayload,
@@ -19,26 +19,6 @@ const SignInScreen = () => {
   var navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // Reusable Input Component with Label
-  const InputField = ({
-    label,
-    placeholder,
-    secureTextEntry,
-    value,
-    setValue,
-  }) => (
-    <View style={styles.inputContainer}>
-      <Text style={styles.inputLabel}>{label}</Text>
-      <TextInput
-        style={styles.input}
-        placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
-        // value={value}
-        onChange={setValue}
-      />
-    </View>
-  );
 
   const signInProcess = () => {
     if (
@@ -58,7 +38,6 @@ const SignInScreen = () => {
           parseResponseToTokenPayload(response.data);
           console.log(tokenPayload.token);
           storeToken(tokenPayload.token);
-          console.log(await getToken());
           navigation.navigate("TabNavigator");
         })
         .catch((error) => {
@@ -143,9 +122,11 @@ const SignInScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={{ color: "#1C1C1E" }}></Text>
+        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+          <Text style={styles.loginText}>Sign Up</Text>
+        </TouchableOpacity>
         <Text style={styles.signUpText}>Sign In</Text>
-        <Text style={{ color: "#1C1C1E" }}></Text>
+        <Text style={{ color: "#1C1C1E" }}>Log in</Text>
       </View>
 
       <View style={styles.inputContainer}>

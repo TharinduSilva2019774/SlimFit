@@ -52,7 +52,6 @@ const FitnessTrackerApp = ({ navigation }) => {
       const year = selectedDate.getFullYear();
       const month = String(selectedDate.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so add 1
       const day = String(selectedDate.getDate()).padStart(2, "0");
-      console.log(selectedDate);
       const response = await fetch(
         `http://10.0.2.2:8080/api/v1/calorie/dailyDetails?date=${year}-${month}-${day}`,
         {
@@ -62,7 +61,6 @@ const FitnessTrackerApp = ({ navigation }) => {
         }
       );
       const json = await response.json();
-      console.log(json);
       setData(json);
       setMealRecords([
         {
