@@ -138,8 +138,6 @@ const NewActivityScreen = () => {
       color: "white",
     },
     predButton: {
-      // Style your button here
-      // Example styles:
       backgroundColor: "blue",
       padding: 10,
       borderRadius: 5,
@@ -159,6 +157,22 @@ const NewActivityScreen = () => {
       fontWeight: "bold",
     },
   });
+
+  const TimeModel = ({ timeOpen, time, setTimeOpen, setTime }) => (
+    <DatePicker
+      modal
+      open={timeOpen}
+      date={time}
+      mode="time"
+      onConfirm={(date) => {
+        setTimeOpen(false);
+        setTime(date);
+      }}
+      onCancel={() => {
+        setTimeOpen(false);
+      }}
+    />
+  );
 
   useEffect(() => {
     fetchData();
@@ -266,7 +280,7 @@ const NewActivityScreen = () => {
           console.error("Error:", error);
         });
     } else {
-      console.log("nuh uh");
+      setModalVisible(true);
     }
   };
 
@@ -403,6 +417,12 @@ const NewActivityScreen = () => {
               setStartTimeOpen(false);
             }}
           />
+          {/* <TimeModel
+            timeOpen={startTimeOpen}
+            time={startTime}
+            setTimeOpen={setStartTimeOpen}
+            setTime={setStartTime}
+          /> */}
         </View>
         <Text style={{ color: "white" }}>duration : {duration} minutes</Text>
         <View style={styles.inputField}>

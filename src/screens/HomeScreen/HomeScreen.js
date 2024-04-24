@@ -19,31 +19,42 @@ const DayItem = ({ day, date, isSelected, onSelect }) => {
   );
 };
 
-const MealRecordCard = ({ mealName, stats, src }) => (
+const MealRecordCard = ({ mealName, stats, goalMet }) => (
   <View style={styles.mealRecordCard}>
     <View>
       <Text style={styles.mealRecordTitle}>{mealName}</Text>
-      <Text style={styles.mealRecordStats}>{stats}</Text>
+      <Text
+        style={[
+          styles.mealRecordStats,
+          goalMet ? { color: "green" } : { color: "red" },
+        ]}
+      >
+        {stats}
+      </Text>
     </View>
-    {/* <Image source={{ uri: src }} style={styles.mealRecordImage} /> */}
   </View>
 );
 
 const FitnessTrackerApp = ({ navigation }) => {
   const [data, setData] = useState(null);
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [mealRecords, setMealRecords] = useState([]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [selectedDate]);
 
   const fetchData = async () => {
     try {
       const token = await getToken();
+
+      const year = selectedDate.getFullYear();
+      const month = String(selectedDate.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so add 1
+      const day = String(selectedDate.getDate()).padStart(2, "0");
+      console.log(selectedDate);
       const response = await fetch(
-        "http://10.0.2.2:8080/api/v1/calorie/dailyDetails?date=2024-03-08",
+        `http://10.0.2.2:8080/api/v1/calorie/dailyDetails?date=${year}-${month}-${day}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -51,8 +62,8 @@ const FitnessTrackerApp = ({ navigation }) => {
         }
       );
       const json = await response.json();
-      setData(json);
       console.log(json);
+      setData(json);
       setMealRecords([
         {
           mealName: "Breakfast",
@@ -67,7 +78,7 @@ const FitnessTrackerApp = ({ navigation }) => {
         {
           mealName: "Dinner",
           stats: json.dinnerActual + "/" + json.dinnerGoal,
-          src: json.dinnerActual <= json.dinnerGoal,
+          goalMet: json.dinnerActual <= json.dinnerGoal,
         },
       ]);
     } catch (error) {
@@ -75,17 +86,6 @@ const FitnessTrackerApp = ({ navigation }) => {
     }
   };
 
-  const dailyStatistics = [
-    { day: "M", date: "16", isActive: false },
-    { day: "T", date: "17", isActive: false },
-    { day: "W", date: "18", isActive: true },
-    { day: "T", date: "19", isActive: false },
-    { day: "F", date: "20", isActive: false },
-    { day: "S", date: "21", isActive: false },
-    { day: "S", date: "22", isActive: false },
-  ];
-
-  const selectedDate = new Date();
   const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
   // Array to store the seven dates
@@ -93,7 +93,7 @@ const FitnessTrackerApp = ({ navigation }) => {
 
   // Loop to populate the array with seven dates
   for (let i = -3; i <= 3; i++) {
-    const date = new Date();
+    const date = new Date(selectedDate);
     date.setDate(selectedDate.getDate() + i);
     dates.push(date);
   }
@@ -113,7 +113,9 @@ const FitnessTrackerApp = ({ navigation }) => {
               isSelected={
                 date.getDate() == selectedDate.getDate() ? true : false
               }
-              onSelect={() => {}}
+              onSelect={() => {
+                setSelectedDate(date);
+              }}
             />
           ))}
         </View>
@@ -165,7 +167,7 @@ const FitnessTrackerApp = ({ navigation }) => {
               key={meal.mealName}
               mealName={meal.mealName}
               stats={meal.stats}
-              src={meal.src}
+              goalMet={meal.goalMet}
             />
           ))}
         </View>
