@@ -12,7 +12,7 @@ import {
 import { Dropdown } from "react-native-element-dropdown";
 import DatePicker from "react-native-date-picker";
 import { useNavigation } from "@react-navigation/native";
-import { getToken } from "../AsyncStorage";
+import { getToken } from "../../assets/AsyncStorage";
 
 const NewActivityScreen = () => {
   const navigation = useNavigation();

@@ -5,9 +5,11 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Modal,
+  Button,
 } from "react-native";
 import axios from "axios";
-import { storeToken } from "../AsyncStorage";
+import { storeToken } from "../../assets/AsyncStorage";
 import {
   parseResponseToTokenPayload,
   tokenPayload,
@@ -19,7 +21,7 @@ const SignInScreen = () => {
   var navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [modalVisible, setModalVisible] = useState(false);
   const signInProcess = () => {
     if (
       email != "" &&
@@ -42,6 +44,7 @@ const SignInScreen = () => {
         })
         .catch((error) => {
           console.error("Error:", error);
+          setModalVisible(true);
         });
     }
   };
@@ -126,7 +129,7 @@ const SignInScreen = () => {
           <Text style={styles.loginText}>Sign Up</Text>
         </TouchableOpacity>
         <Text style={styles.signUpText}>Sign In</Text>
-        <Text style={{ color: "#1C1C1E" }}>Log in</Text>
+        <Text style={{ color: "#1F2937" }}>Log In</Text>
       </View>
 
       <View style={styles.inputContainer}>
@@ -154,6 +157,32 @@ const SignInScreen = () => {
       </TouchableOpacity>
 
       <Text style={styles.forgotPassword}>Forgot your password?</Text>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <View
+            style={{ backgroundColor: "white", padding: 20, borderRadius: 10 }}
+          >
+            <Text>Unknown error occurred please try again</Text>
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

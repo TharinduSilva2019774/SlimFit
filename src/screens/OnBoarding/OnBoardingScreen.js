@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import DatePicker from "react-native-date-picker";
 import { Dropdown } from "react-native-element-dropdown";
-import { getToken } from "../AsyncStorage";
+import { getToken } from "../../assets/AsyncStorage";
 import { useNavigation } from "@react-navigation/native";
 const handleInputChange = (newValue, setValue) => {
   // Regular expression to check if the input is a valid number

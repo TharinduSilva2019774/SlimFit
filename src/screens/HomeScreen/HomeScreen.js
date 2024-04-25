@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
-import { getToken } from "../AsyncStorage";
+import { getToken } from "../../assets/AsyncStorage";
 
 const DayItem = ({ day, date, isSelected, onSelect }) => {
   const style = isSelected ? styles.dayItemSelected : styles.dayItem;

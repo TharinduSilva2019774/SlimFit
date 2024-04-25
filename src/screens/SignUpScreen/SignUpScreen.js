@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { storeToken } from "../AsyncStorage";
+import { storeToken } from "../../assets/AsyncStorage";
 import axios from "axios";
 import {
   parseResponseToTokenPayload,
