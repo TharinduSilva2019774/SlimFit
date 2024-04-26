@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  TextInput,
-  ScrollView,
-  Button,
-  Modal,
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { getToken } from "../../assets/AsyncStorage";
 import { RulerPicker } from "react-native-ruler-picker";
