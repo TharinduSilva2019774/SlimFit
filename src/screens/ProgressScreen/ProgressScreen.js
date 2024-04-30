@@ -1,52 +1,53 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Dimensions,
-} from "react-native";
-import {
-  LineChart,
-  BarChart,
-  ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
-const ProgressScreen = () => {
-  const intencityLevelData = [
-    { label: "Sedentary", value: "1" },
-    { label: "Light", value: "2" },
-    { label: "Moderate ", value: "3" },
-    { label: "Intense ", value: "4" },
-    { label: "Very Intense  ", value: "5" },
-  ];
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { LineChart } from "react-native-chart-kit";
+import { getToken } from "../../assets/AsyncStorage";
 
+const ProgressScreen = () => {
+  const [show, setShow] = useState(false);
+  const [actualWeightData, setActualWeightData] = useState([]);
+  const [actualDateData, setActualDateData] = useState([]);
   const chartConfig = {
-    backgroundGradientFrom: "#1E2923",
     backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#08130D",
     backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    color: (opacity = 1) => `rgba(255, 255, 0, ${opacity})`,
     barPercentage: 0.5,
   };
 
-  const data = {
-    labels: ["2023/12/20", "2023/11/30", "2023/11/11", "2023/10/20"],
-    datasets: [
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const token = await getToken();
+
+    const response = await fetch(
+      `http://10.0.2.2:8080/api/v1/progress/actual`,
       {
-        data: [20, 45, 28, 80, 99, 43],
-      },
-    ],
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const json = await response.json();
+    setActualDateData([]);
+    setActualWeightData([]);
+    var dates = [];
+    var weight = [];
+    json.map((item, index) => {
+      const d = new Date(item.date);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so add 1
+      const day = String(d.getDate()).padStart(2, "0");
+      dates.push(`${year}/${month}/${day}`);
+      weight.push(item.weight);
+    });
+    setActualDateData(dates);
+    setActualWeightData(weight);
+    setShow(true);
   };
 
   const screenWidth = Dimensions.get("window").width;
-
-  const records = [
-    { date: "2023/12/20", weight: "54.7kg" },
-    { date: "2023/11/30", weight: "55.0kg" },
-    { date: "2023/11/11", weight: "55.5kg" },
-    { date: "2023/10/20", weight: "56.4kg" },
-  ];
 
   const styles = StyleSheet.create({
     //Main container styles
@@ -119,7 +120,7 @@ const ProgressScreen = () => {
     <View style={styles.scrollViewcontainer}>
       <View style={styles.headerContainer}>
         <View style={styles.leftItem}>
-          <Text style={styles.backTxt}>back</Text>
+          <Text style={{ color: "#1C1C1E" }}>blank</Text>
         </View>
         <View>
           <Text style={styles.titleTxt}>Progress</Text>
@@ -128,21 +129,27 @@ const ProgressScreen = () => {
           <Text style={{ color: "#1C1C1E" }}>blank</Text>
         </View>
       </View>
-      <View style={styles.container}>
-        <View style={{ paddingTop: "5%" }}>
-          <LineChart
-            data={data}
-            width={screenWidth}
-            height={300}
-            verticalLabelRotation={30}
-            chartConfig={chartConfig}
-            bezier
-          />
+      {show && (
+        <View style={styles.container}>
+          <View style={{ paddingTop: "5%" }}>
+            <LineChart
+              data={{
+                labels: actualDateData,
+                datasets: [
+                  {
+                    data: actualWeightData,
+                  },
+                ],
+              }}
+              width={screenWidth}
+              height={300}
+              verticalLabelRotation={30}
+              chartConfig={chartConfig}
+              bezier
+            />
+          </View>
         </View>
-        <View style={{ alignItems: "center", paddingTop: "25%" }}>
-          <RecordList records={records} />
-        </View>
-      </View>
+      )}
     </View>
   );
 };

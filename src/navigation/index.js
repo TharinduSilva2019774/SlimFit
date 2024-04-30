@@ -18,15 +18,14 @@ const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* <Stack.Screen name="LogCal1" component={DummyScreen} /> */}
-
-        <Stack.Screen name="LogCal" component={LogCalorieIntake} />
-
+        <Stack.Screen name="TabNavigator" component={TabMenu} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="SignIn" component={SignInScreen} />
-        <Stack.Screen name="TabNavigator" component={TabMenu} />
+
         <Stack.Screen name="NewAct" component={NewActivityScreen} />
         <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
         <Stack.Screen name="LogWeight" component={LogWeightScreen} />
+        <Stack.Screen name="LogCal" component={LogCalorieIntake} />
       </Stack.Navigator>
     </NavigationContainer>
   );
