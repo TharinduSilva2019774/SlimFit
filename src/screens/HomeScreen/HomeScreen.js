@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
 import { getToken } from "../../assets/AsyncStorage";
+import { useNavigation } from "@react-navigation/native";
 
 const DayItem = ({ day, date, isSelected, onSelect }) => {
   const style = isSelected ? styles.dayItemSelected : styles.dayItem;
@@ -35,7 +36,8 @@ const MealRecordCard = ({ mealName, stats, goalMet }) => (
   </View>
 );
 
-const FitnessTrackerApp = ({ navigation }) => {
+const HomeScreen = () => {
+  var navigation = useNavigation();
   const [data, setData] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -169,6 +171,33 @@ const FitnessTrackerApp = ({ navigation }) => {
             />
           ))}
         </View>
+
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingTop: "10%",
+          }}
+        >
+          <TouchableOpacity
+            style={styles.logButtons}
+            onPress={() => navigation.navigate("NewAct")}
+          >
+            <Text style={{ color: "white" }}>Log activity</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.logButtons}
+            onPress={() => navigation.navigate("LogCal")}
+          >
+            <Text style={{ color: "white" }}>Log food</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.logButtons}
+            onPress={() => navigation.navigate("LogWeight")}
+          >
+            <Text style={{ color: "white" }}>Log weight</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -300,6 +329,17 @@ const styles = StyleSheet.create({
       color: "#FFFFFF",
     },
   },
+
+  logButtons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingHorizontal: 16,
+    paddingVertical: 20,
+    marginTop: 16,
+    borderRadius: 8,
+    backgroundColor: "green",
+    width: "32%",
+  },
 });
 
-export default FitnessTrackerApp;
+export default HomeScreen;

@@ -67,13 +67,6 @@ const LogWeightScreen = () => {
         onValueChangeEnd={(number) => setWeight(number)}
       />
       <View style={styles.content}>
-        <Image
-          resizeMode="contain"
-          source={{
-            uri: "https://cdn.builder.io/api/v1/image/assets/TEMP/94841660908d6f01817a2658a9340c90e7e28d7f1c9a17d6f046b457ba0a8f55?apiKey=748f91a40ab04acf923d77b5c15f23f6&",
-          }}
-          style={styles.mainImage}
-        />
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity
             style={styles.textContainer}
@@ -123,6 +116,7 @@ const styles = StyleSheet.create({
     marginTop: "10%",
     padding: "7%",
     width: "100%",
+    height: "100%",
     maxWidth: 312,
     alignItems: "stretch",
     gap: 20,

@@ -56,7 +56,7 @@ const TabMenu = ({ route }) => {
         component={ProgressScreen}
         options={{ headerShown: false }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Add"
         component={HomeScreen}
         options={{
@@ -70,7 +70,7 @@ const TabMenu = ({ route }) => {
             </>
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name="Community"
         component={CommunityScreen}
