@@ -8,7 +8,7 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import { Dropdown, MultiSelect } from "react-native-element-dropdown";
+import { Dropdown } from "react-native-element-dropdown";
 import DatePicker from "react-native-date-picker";
 import { useNavigation } from "@react-navigation/native";
 import { getToken } from "../../assets/AsyncStorage";

@@ -5,6 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Modal,
+  Button,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { storeToken } from "../../assets/AsyncStorage";
@@ -21,26 +23,47 @@ const SignUpScreen = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [erroMessage, setErrorMessage] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const validateEmail = (email) => {
+    // Regular expression for email validation
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
 
   const signUpRequest = () => {
-    if ((firstName != "", lastName != "", email != "", password != "")) {
-      axios
-        .post("http://10.0.2.2:8080/api/v1/auth/register", {
-          firstname: firstName,
-          lastname: lastName,
-          email: email,
-          password: password,
-        })
-        .then(async (response) => {
-          console.log("Success:", response.data);
-          parseResponseToTokenPayload(response.data);
-          console.log(tokenPayload.token);
-          storeToken(tokenPayload.token);
-          navigation.navigate("OnBoarding");
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+    if (validateEmail(email)) {
+      if ((firstName != "", lastName != "", email != "", password != "")) {
+        axios
+          .post("http://10.0.2.2:8080/api/v1/auth/register", {
+            firstname: firstName,
+            lastname: lastName,
+            email: email,
+            password: password,
+          })
+          .then(async (response) => {
+            console.log("Success:", response.data);
+            parseResponseToTokenPayload(response.data);
+            console.log(tokenPayload.token);
+            storeToken(tokenPayload.token);
+            navigation.navigate("OnBoarding");
+          })
+          .catch(function (error) {
+            if (error.response) {
+              console.log(error.response.data);
+              setErrorMessage(error.response.data);
+            } else {
+              console.log("Error", error.message);
+              setErrorMessage("Unexpected error, please try again");
+            }
+            setModalVisible(true);
+          });
+      }
+    } else {
+      console.log("Invalid email");
+      setErrorMessage("Invalid email");
+      setModalVisible(true);
     }
   };
 
@@ -105,6 +128,31 @@ const SignUpScreen = () => {
       </TouchableOpacity>
 
       <Text style={styles.forgotPassword}>Forgot your password?</Text>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <View
+            style={{ backgroundColor: "white", padding: 20, borderRadius: 10 }}
+          >
+            <Text>{erroMessage}</Text>
+            <Button title="Close" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
