@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { getToken } from "../../assets/AsyncStorage";
 
 const ProfileSection = ({ title, content }) => (
   <View style={styles.profileSection}>
@@ -29,6 +30,27 @@ const ImageComponent = () => {
 
 const SettingsScreen = () => {
   var navigation = useNavigation();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [joinedDate, setJoinedDate] = useState(new Date());
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    const token = await getToken();
+    const response = await fetch("http://10.0.2.2:8080/api/v1/user", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const json = await response.json();
+    setFirstName(json.firstName);
+    setLastName(json.lastName);
+    setJoinedDate(new Date(json.startDate));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -36,16 +58,21 @@ const SettingsScreen = () => {
           <View style={styles.profileImageWrapper}>
             <ImageComponent />
           </View>
-          <Text style={styles.userName}>Sarah Wegan</Text>
+          <Text style={styles.userName}>
+            {firstName} {lastName}
+          </Text>
         </View>
         <View style={styles.divider} />
-        <ProfileSection title="Joined" content="2 months ago" />
+        <ProfileSection title="Joined" content={joinedDate.toDateString()} />
       </View>
 
       <View style={{ paddingTop: "20%", paddingBottom: "20%" }}>
         <View style={styles.divider} />
         <View style={styles.editAndSettings}>
-          <TouchableOpacity style={styles.editProfileButton}>
+          <TouchableOpacity
+            style={styles.editProfileButton}
+            onPress={() => navigation.navigate("EditSettingScreen")}
+          >
             <Text style={styles.editProfileText}>Edit Profile</Text>
           </TouchableOpacity>
 

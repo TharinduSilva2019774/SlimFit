@@ -124,7 +124,7 @@ const LogCalorieIntake = () => {
   };
 
   return (
-    <ScrollView style={styles.scrollViewcontainer}>
+    <View style={styles.scrollViewcontainer}>
       <View style={styles.headerContainer}>
         <TouchableOpacity
           style={styles.leftItem}
@@ -300,7 +300,7 @@ const LogCalorieIntake = () => {
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
