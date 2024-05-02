@@ -27,13 +27,27 @@ const SignUpScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const validateEmail = (email) => {
-    // Regular expression for email validation
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
 
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
   const signUpRequest = () => {
-    if (validateEmail(email)) {
+    if (!validateEmail(email)) {
+      console.log("Invalid email");
+      setErrorMessage("Invalid email");
+      setModalVisible(true);
+    } else if (!validatePassword(password)) {
+      console.log("Invalid password");
+      setErrorMessage(
+        "The password should at least contain 8 characters, including an upper case, a lower case letter and numbers."
+      );
+      setModalVisible(true);
+    } else {
       if ((firstName != "", lastName != "", email != "", password != "")) {
         axios
           .post("http://10.0.2.2:8080/api/v1/auth/register", {
@@ -60,10 +74,6 @@ const SignUpScreen = () => {
             setModalVisible(true);
           });
       }
-    } else {
-      console.log("Invalid email");
-      setErrorMessage("Invalid email");
-      setModalVisible(true);
     }
   };
 

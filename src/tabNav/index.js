@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
-import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import SettingScreen from "../screens/SettingScreen";
 import { Ionicons } from "@expo/vector-icons";
-import Popup from "../assets/Popup";
 import ProgressScreen from "../screens/ProgressScreen/ProgressScreen";
 import CommunityScreen from "../screens/CommunityScreen/CommunityScreen";
 

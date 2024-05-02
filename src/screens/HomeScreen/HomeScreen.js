@@ -123,11 +123,11 @@ const HomeScreen = () => {
       <View style={styles.mealRecordsContainer}>
         <View style={{ alignItems: "center" }}>
           <CircularProgress
-            value={data != null ? data.dailyActual : 0}
+            value={data != null ? data.dailyActual : 1000}
             radius={84}
             duration={2000}
             progressValueColor={"#ecf0f1"}
-            maxValue={200}
+            maxValue={data != null ? data.dailyGoal : 1600}
             title={"Active Calories"}
             titleColor={"white"}
             titleStyle={{ fontSize: 13 }}
@@ -137,11 +137,11 @@ const HomeScreen = () => {
         <View style={styles.activityRingContainer}>
           <View style={{ padding: 35 }}>
             <CircularProgress
-              value={60}
+              value={data != null ? data.totalActiveMinutes : 50}
               radius={50}
               duration={2000}
               progressValueColor={"#ecf0f1"}
-              maxValue={200}
+              maxValue={data != null ? data.totalActiveMinutes : 100}
               title={"Active Time"}
               titleColor={"white"}
               titleStyle={{ fontSize: 12 }}
@@ -149,12 +149,12 @@ const HomeScreen = () => {
           </View>
           <View style={{ padding: 35 }}>
             <CircularProgress
-              value={60}
+              value={data != null ? data.targetWeight : 50}
               radius={50}
               duration={2000}
               progressValueColor={"#ecf0f1"}
-              maxValue={200}
-              title={"Target "}
+              maxValue={data != null ? data.currentWeight : 70}
+              title={"Target"}
               titleColor={"white"}
               titleStyle={{ fontSize: 12 }}
             />

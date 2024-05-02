@@ -22,6 +22,7 @@ const SignInScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [erroMessage, setErrorMessage] = useState("");
   const signInProcess = () => {
     if (
       email != "" &&
@@ -42,8 +43,14 @@ const SignInScreen = () => {
           storeToken(tokenPayload.token);
           navigation.navigate("TabNavigator");
         })
-        .catch((error) => {
-          console.error("Error:", error);
+        .catch(function (error) {
+          if (error.response) {
+            console.log(error.response.data);
+            setErrorMessage(error.response.data);
+          } else {
+            console.log("Error", error.message);
+            setErrorMessage("Unexpected error, please try again");
+          }
           setModalVisible(true);
         });
     }
@@ -156,8 +163,6 @@ const SignInScreen = () => {
         <Text style={styles.buttonText}>Sign In</Text>
       </TouchableOpacity>
 
-      <Text style={styles.forgotPassword}>Forgot your password?</Text>
-
       <Modal
         animationType="slide"
         transparent={true}
@@ -178,7 +183,7 @@ const SignInScreen = () => {
           <View
             style={{ backgroundColor: "white", padding: 20, borderRadius: 10 }}
           >
-            <Text>Unknown error occurred please try again</Text>
+            <Text>{erroMessage}</Text>
             <Button title="Close" onPress={() => setModalVisible(false)} />
           </View>
         </View>

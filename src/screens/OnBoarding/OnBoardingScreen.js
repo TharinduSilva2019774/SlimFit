@@ -35,6 +35,7 @@ function OnBoardingScreen() {
   const [height, setHight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [gender, setGender] = useState(0);
+  const [targetWeight, setTargetWeight] = useState(0);
   const [dob, setDob] = useState(new Date());
   const [weeklyWeightLossGoal, setWeeklyWeightLossGoal] = useState(0);
   const [dailyActivityGoal, setDailyActivityGoal] = useState(0);
@@ -45,7 +46,7 @@ function OnBoardingScreen() {
 
   const saveUserInfor = async () => {
     if (
-      (age > 15,
+      (age > 20,
       height > 0,
       weight > 0,
       gender > 0,
@@ -66,6 +67,7 @@ function OnBoardingScreen() {
           gender: gender,
           weeklyWeightLossGoal: weeklyWeightLossGoal,
           dailyActivityGoal: dailyActivityGoal,
+          targetWeight: targetWeight,
         }),
       })
         .then((response) => {
@@ -99,16 +101,47 @@ function OnBoardingScreen() {
     setAge(ageInYears.toString());
   };
 
+  const calculateTimeToReachTarget = () => {
+    if (
+      weeklyWeightLossGoal > 0 &&
+      weight > 0 &&
+      targetWeight > 40 &&
+      dailyActivityGoal > 0
+    ) {
+      const currentWeightKg = parseFloat(weight);
+      const targetWeightKg = parseFloat(targetWeight);
+      const weeklyWeightLossGrams = parseFloat(
+        weeklyWeightLossGoal - dailyActivityGoal
+      );
+
+      if (
+        !isNaN(currentWeightKg) &&
+        !isNaN(targetWeightKg) &&
+        !isNaN(weeklyWeightLossGrams)
+      ) {
+        var timeInWeeks = (
+          (targetWeightKg - currentWeightKg) /
+          (weeklyWeightLossGrams / 1000)
+        ).toFixed(0);
+
+        if (timeInWeeks < 0) {
+          timeInWeeks = timeInWeeks * -1;
+        }
+
+        return `You will achive you goal in ${timeInWeeks} weeks`;
+      } else {
+        return "";
+      }
+    } else {
+      return "";
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Fill Your Profile Information</Text>
       </View>
-      {/* <Image
-        resizeMode="cover"
-        source={{ uri: "profile-placeholder" }}
-        style={styles.profileImage}
-      /> */}
       <View style={styles.inputField}>
         <View style={styles.profileAttributeContainer}>
           <View style={styles.profileAttributeLabelContainer}>
@@ -159,6 +192,7 @@ function OnBoardingScreen() {
               : ""}
           </Text>
         </View>
+
         <View style={styles.profileAttributeContainer}>
           <View style={styles.profileAttributeLabelContainer}>
             <Text style={styles.profileAttributeLabelText}>
@@ -174,7 +208,26 @@ function OnBoardingScreen() {
             keyboardType="numeric"
           />
         </View>
-
+        <View style={styles.profileAttributeContainer}>
+          <View style={styles.profileAttributeLabelContainer}>
+            <Text style={styles.profileAttributeLabelText}>
+              Target weight (kg)
+            </Text>
+          </View>
+          <TextInput
+            style={styles.profileAttributeValueContainer}
+            onChangeText={(val) => handleInputChange(val, setTargetWeight)}
+            placeholder={"..."}
+            placeholderTextColor="#FFF"
+            value={targetWeight}
+            keyboardType="numeric"
+          />
+          <Text style={{ color: "red", paddingTop: "4%" }}>
+            {targetWeight < 40 && targetWeight > 0
+              ? "This is an unrealistic goal"
+              : calculateTimeToReachTarget()}
+          </Text>
+        </View>
         <View style={styles.profileAttributeContainer}>
           <View style={styles.profileAttributeLabelContainer}>
             <Text style={styles.profileAttributeLabelText}>Date of birth</Text>
@@ -199,7 +252,7 @@ function OnBoardingScreen() {
             }}
           />
           <Text style={{ color: "grey", paddingTop: "4%" }}>
-            {age < 16
+            {age < 20
               ? "You are too yong for this application"
               : `You are ${age} years old`}
           </Text>
@@ -291,10 +344,10 @@ const styles = StyleSheet.create({
     height: 136,
   },
   inputField: {
-    paddingTop: "10%",
+    paddingTop: "5%",
   },
   profileAttributeContainer: {
-    marginTop: 24,
+    marginTop: "5%",
     marginLeft: 16,
   },
   profileAttributeLabelContainer: {
