@@ -7,10 +7,9 @@ import NewActivityScreen from "../screens/NewActivityScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
-import OnBoardingScreen from "../screens/OnBoarding/OnBoardingScreen";
-import LogWeightScreen from "../screens/LogWeightScreen/LogWeightScreen";
-import DummyScreen from "../screens/DummyScreen/DummyScreen";
-import EditSettingScreen from "../screens/EditSettingScreen/EditScreenScreen";
+import OnBoardingScreen from "../screens/OnBoarding";
+import LogWeightScreen from "../screens/LogWeightScreen";
+import EditSettingScreen from "../screens/EditSettingScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,12 +21,11 @@ const Navigation = () => {
 
         <Stack.Screen name="SignIn" component={SignInScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-
         <Stack.Screen name="NewAct" component={NewActivityScreen} />
-        <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
         <Stack.Screen name="LogWeight" component={LogWeightScreen} />
         <Stack.Screen name="LogCal" component={LogCalorieIntake} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
         <Stack.Screen name="EditSettingScreen" component={EditSettingScreen} />
       </Stack.Navigator>
     </NavigationContainer>

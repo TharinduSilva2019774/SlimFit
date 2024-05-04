@@ -106,7 +106,7 @@ const CommunityScreen = () => {
           <Text style={styles.backTxt}>back</Text>
         </View>
         <View>
-          <Text style={styles.titleTxt}>Progress</Text>
+          <Text style={styles.titleTxt}>Community</Text>
         </View>
         <View style={styles.leftItem}>
           <Text style={{ color: "#1C1C1E" }}>blank</Text>

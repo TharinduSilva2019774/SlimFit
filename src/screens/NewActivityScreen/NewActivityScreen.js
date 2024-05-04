@@ -216,6 +216,7 @@ const NewActivityScreen = () => {
     if (
       selectIntensity != null &&
       selectActivityType != null &&
+      selectActivityType != "Other" &&
       startTime != null &&
       endTime != null &&
       duration > 0
@@ -262,7 +263,7 @@ const NewActivityScreen = () => {
         body: JSON.stringify({
           activityType: selectActivityType,
           calorie: caloriesBurned,
-          duration: differenceInMinutes,
+          duration: duration,
           intensity: selectIntensity,
           date: `${year}-${month}-${day}`,
         }),
@@ -275,6 +276,7 @@ const NewActivityScreen = () => {
         })
         .then((data) => {
           console.log("Success:", data);
+          navigation.navigate("TabNavigator");
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -417,12 +419,6 @@ const NewActivityScreen = () => {
               setStartTimeOpen(false);
             }}
           />
-          {/* <TimeModel
-            timeOpen={startTimeOpen}
-            time={startTime}
-            setTimeOpen={setStartTimeOpen}
-            setTime={setStartTime}
-          /> */}
         </View>
         <Text style={{ color: "white" }}>duration : {duration} minutes</Text>
         <View style={styles.inputField}>

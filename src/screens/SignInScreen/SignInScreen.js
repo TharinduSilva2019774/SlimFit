@@ -118,6 +118,7 @@ const SignInScreen = () => {
       paddingVertical: 12,
       borderRadius: 50,
       alignItems: "center",
+      width: "80%",
     },
     buttonText: {
       color: "#1A202C",
@@ -159,9 +160,11 @@ const SignInScreen = () => {
           }}
         />
       </View>
-      <TouchableOpacity style={styles.button} onPress={signInProcess}>
-        <Text style={styles.buttonText}>Sign In</Text>
-      </TouchableOpacity>
+      <View style={{ alignItems: "center", width: "100%" }}>
+        <TouchableOpacity style={styles.button} onPress={signInProcess}>
+          <Text style={styles.buttonText}>Sign In</Text>
+        </TouchableOpacity>
+      </View>
 
       <Modal
         animationType="slide"

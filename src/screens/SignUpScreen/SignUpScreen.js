@@ -8,6 +8,7 @@ import {
   Modal,
   Button,
 } from "react-native";
+import CheckBox from "react-native-check-box";
 import { useNavigation } from "@react-navigation/native";
 import { storeToken } from "../../assets/AsyncStorage";
 import axios from "axios";
@@ -15,6 +16,7 @@ import {
   parseResponseToTokenPayload,
   tokenPayload,
 } from "../../assets/tokenReponse";
+import TermsAndConditionsModal from "../../assets/TermsAndConditionsModal";
 
 const SignUpScreen = () => {
   var navigation = useNavigation();
@@ -25,6 +27,8 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState("");
   const [erroMessage, setErrorMessage] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [checkbox, setCheckBOx] = useState(false);
+  const [showTermsModal, setShowTermsModal] = useState(false);
 
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -48,7 +52,9 @@ const SignUpScreen = () => {
       );
       setModalVisible(true);
     } else {
-      if ((firstName != "", lastName != "", email != "", password != "")) {
+      if (
+        (firstName != "", lastName != "", email != "", password != "", checkbox)
+      ) {
         axios
           .post("http://10.0.2.2:8080/api/v1/auth/register", {
             firstname: firstName,
@@ -73,6 +79,7 @@ const SignUpScreen = () => {
             }
             setModalVisible(true);
           });
+      } else {
       }
     }
   };
@@ -125,19 +132,25 @@ const SignUpScreen = () => {
         />
       </View>
 
-      {/* <View style={styles.newsletterContainer}>
-        <View style={styles.checkbox} />
-        <Text style={styles.newsletterText}>
-          I would like to receive your newsletter and other promotional
-          information.
-        </Text>
-      </View> */}
-
-      <TouchableOpacity style={styles.button} onPress={signUpRequest}>
-        <Text style={styles.buttonText}>Sign Up</Text>
-      </TouchableOpacity>
-
-      <Text style={styles.forgotPassword}>Forgot your password?</Text>
+      <View style={styles.newsletterContainer}>
+        <CheckBox
+          style={{ paddingRight: 10, color: "green" }}
+          isChecked={checkbox}
+          onClick={() => {
+            setCheckBOx(!checkbox);
+          }}
+        />
+        <TouchableOpacity onPress={() => setShowTermsModal(true)}>
+          <Text style={styles.newsletterText}>
+            I accept the terms and conditions
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ alignItems: "center", width: "100%" }}>
+        <TouchableOpacity style={styles.button} onPress={signUpRequest}>
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
       <Modal
         animationType="slide"
         transparent={true}
@@ -163,6 +176,9 @@ const SignUpScreen = () => {
           </View>
         </View>
       </Modal>
+      {showTermsModal && (
+        <TermsAndConditionsModal onClose={() => setShowTermsModal(false)} />
+      )}
     </View>
   );
 };
@@ -227,6 +243,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 50,
     alignItems: "center",
+    width: "80%",
   },
   buttonText: {
     color: "#1A202C",
