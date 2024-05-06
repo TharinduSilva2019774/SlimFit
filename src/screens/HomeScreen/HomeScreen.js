@@ -122,6 +122,7 @@ const HomeScreen = () => {
       </View>
       <View style={styles.mealRecordsContainer}>
         <View style={{ alignItems: "center" }}>
+          <Text style={styles.dailyStatsTile}>Daily statistics</Text>
           <CircularProgress
             value={data != null ? data.dailyActual : 1000}
             radius={84}
@@ -236,6 +237,12 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     borderRadius: 9999,
   },
+  dailyStatsTile: {
+    color: "white",
+    fontWeight: "bold",
+    padding: "4%",
+    fontSize: 22,
+  },
   dailyStatCardActive: {
     backgroundColor: "#A3E635",
   },
@@ -252,7 +259,7 @@ const styles = StyleSheet.create({
   },
   mealRecordsContainer: {
     paddingHorizontal: 24,
-    marginTop: 32,
+    marginTop: "3%",
     width: "100%",
   },
   activityRingContainer: {
