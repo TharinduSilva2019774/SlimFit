@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  FlatList,
+  Dimensions 
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import DatePicker from "react-native-date-picker";
@@ -24,9 +24,44 @@ const LogCalorieIntake = () => {
   const [selectedWeights, setSelectedWeights] = useState([]);
   const [filteredFoods, setFilteredFoods] = useState([]);
   // Sample data, replace with your own dataset
-
+  const renderItem = (item, index) => (
+    <View
+    style={{
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingHorizontal: 10,
+      width:"80%"
+    }}
+  >
+    <Text style={{ color: "white" }}>{item.name}</Text>
+    <Text style={{ color: "white" }}>{item.cal} kcal/100g</Text>
+    <View style={{ flexDirection: "row" }}>
+      <TextInput
+        value={currentSelectedFoodWeight}
+        style={{
+          height: 20,
+          borderColor: "gray",
+          borderWidth: 1,
+          paddingHorizontal: 10,
+          marginRight: 10,
+          color: "white",
+        }}
+        placeholderTextColor={"grey"}
+        placeholder="grams"
+        onChangeText={setCurrentSelectedFoodWeight}
+      />
+      <TouchableOpacity
+        style={{ backgroundColor: "#D0FD3E", borderRadius: 5 }}
+        onPress={() => handleWeightSelection(item.name, item.cal)}
+      >
+        <Text>Add</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+  );
   // Function to filter values based on search keyword
-  const filterValues = async () => {
+  const onSearchChange = async () => {
     setFilteredFoods([]);
     const token = await getToken();
 
@@ -45,7 +80,6 @@ const LogCalorieIntake = () => {
       const cal = Math.round(json.matchFood.cal);
       filteredFoods.push({ name, cal });
     }
-
     json.hintedFoods.map((item, index) => {
       const name = item.foodName;
       const cal = Math.round(item.cal);
@@ -124,7 +158,7 @@ const LogCalorieIntake = () => {
   };
 
   return (
-    <View style={styles.scrollViewcontainer}>
+    <ScrollView style={styles.scrollViewcontainer}>
       <View style={styles.headerContainer}>
         <TouchableOpacity
           style={styles.leftItem}
@@ -140,15 +174,6 @@ const LogCalorieIntake = () => {
         </View>
       </View>
       <View style={styles.container}>
-        <View style={styles.inputField}>
-          <TextInput
-            style={styles.input}
-            // onChangeText={}
-            value={mealName}
-            placeholder="New Meal"
-            placeholderTextColor="white"
-          />
-        </View>
         <View style={styles.inputField}>
           <Dropdown
             style={styles.dropdown}
@@ -201,50 +226,14 @@ const LogCalorieIntake = () => {
             placeholder="Search..."
             onChangeText={(text) => {
               setSearchKeyword(text);
-              filterValues();
+              onSearchChange();
             }}
             value={searchKeyword}
           />
-          <FlatList
-            data={filteredValues}
-            keyExtractor={(item) => item.name.toString()}
-            renderItem={({ item }) => (
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingHorizontal: 10,
-                }}
-              >
-                <Text style={{ color: "white" }}>{item.name}</Text>
-                <Text style={{ color: "white" }}>{item.cal} kcal</Text>
-                <View style={{ flexDirection: "row" }}>
-                  <TextInput
-                    value={currentSelectedFoodWeight}
-                    style={{
-                      height: 20,
-                      borderColor: "gray",
-                      borderWidth: 1,
-                      paddingHorizontal: 10,
-                      marginRight: 10,
-                      color: "white",
-                    }}
-                    placeholderTextColor={"grey"}
-                    onChangeText={setCurrentSelectedFoodWeight}
-                  />
-                  <TouchableOpacity
-                    style={{ backgroundColor: "#D0FD3E", borderRadius: 5 }}
-                    onPress={() => handleWeightSelection(item.name, item.cal)}
-                  >
-                    <Text>Add</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            )}
-          />
         </View>
-
+        <View>
+          {filteredValues.map((item, index) => renderItem(item, index))}
+          </View>
         <View style={{ marginTop: "10%" }}>
           {selectedWeights.length > 0 ? (
             <View
@@ -265,6 +254,7 @@ const LogCalorieIntake = () => {
           ) : (
             <View></View>
           )}
+         
 
           <View style={styles.textAreaContainer}>
             <ScrollView>
@@ -300,7 +290,7 @@ const LogCalorieIntake = () => {
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -314,6 +304,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#1C1C1E",
     width: "100%",
+    height:Dimensions.get('screen').height
   },
   // Header styles
   headerContainer: {
@@ -322,7 +313,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 20,
     backgroundColor: "#1C1C1E",
-    height: "10%",
+    height: "15%",
   },
   leftItem: {
     marginRight: "auto",
@@ -357,7 +348,7 @@ const styles = StyleSheet.create({
   },
   inputField: {
     width: "80%",
-    height: "9%",
+    height: "10%",
   },
   imageCover: {
     width: "100%",

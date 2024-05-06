@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { getToken } from "../../assets/AsyncStorage";
+import { styles } from "./styles";
 
 const ProgressScreen = () => {
   const [show, setShow] = useState(false);
   const [actualWeightData, setActualWeightData] = useState([]);
   const [actualDateData, setActualDateData] = useState([]);
+  const [goalWeightData, setGoalWeightData] = useState([]);
+  const [goalDateData, setGoalDateData] = useState([]);
   const chartConfig = {
     backgroundGradientFromOpacity: 0,
     backgroundGradientToOpacity: 0.5,
@@ -21,7 +24,7 @@ const ProgressScreen = () => {
   const fetchData = async () => {
     const token = await getToken();
 
-    const response = await fetch(
+    const actualResponse = await fetch(
       `http://10.0.2.2:8080/api/v1/progress/actual`,
       {
         headers: {
@@ -29,12 +32,32 @@ const ProgressScreen = () => {
         },
       }
     );
-    const json = await response.json();
-    setActualDateData([]);
-    setActualWeightData([]);
+    const acutalJson = await actualResponse.json();
     var dates = [];
     var weight = [];
-    json.map((item, index) => {
+    acutalJson.map((item, index) => {
+      const d = new Date(item.date);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      dates.push(`${year}/${month}/${day}`);
+      weight.push(item.weight);
+    });
+    setActualDateData(dates);
+    setActualWeightData(weight);
+
+    const goalResponse = await fetch(
+      `http://10.0.2.2:8080/api/v1/progress/goal`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const goalJson = await goalResponse.json();
+    var dates = [];
+    var weight = [];
+    goalJson.map((item, index) => {
       const d = new Date(item.date);
       const year = d.getFullYear();
       const month = String(d.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed, so add 1
@@ -42,64 +65,13 @@ const ProgressScreen = () => {
       dates.push(`${year}/${month}/${day}`);
       weight.push(item.weight);
     });
-    setActualDateData(dates);
-    setActualWeightData(weight);
+    setGoalDateData(dates);
+    setGoalWeightData(weight);
+
     setShow(true);
   };
 
   const screenWidth = Dimensions.get("window").width;
-
-  const styles = StyleSheet.create({
-    //Main container styles
-    scrollViewcontainer: {
-      flex: 1,
-      width: "100%",
-    },
-    container: {
-      flex: 1,
-      alignItems: "center",
-      backgroundColor: "#1C1C1E",
-      width: "100%",
-    },
-
-    // Header styles
-    headerContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      paddingHorizontal: 20,
-      backgroundColor: "#1C1C1E",
-      height: "10%",
-    },
-    leftItem: {
-      marginRight: "auto",
-    },
-    titleTxt: {
-      paddingTop: 20,
-      color: "white",
-      fontSize: 30,
-    },
-    backTxt: {
-      paddingTop: 20,
-      color: "white",
-      fontSize: 16,
-    },
-
-    //Body content styles
-    recordContainer: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      backgroundColor: "#2C2C2E",
-      padding: 15,
-      paddingEnd: 20,
-      marginBottom: 10,
-      width: "97%",
-    },
-    recordText: {
-      color: "#F7FAFC",
-      fontSize: 16,
-    },
-  });
 
   const Record = ({ date, weight }) => (
     <View style={styles.recordContainer}>
@@ -129,27 +101,46 @@ const ProgressScreen = () => {
           <Text style={{ color: "#1C1C1E" }}>blank</Text>
         </View>
       </View>
-      {show && (
-        <View style={styles.container}>
-          <View style={{ paddingTop: "5%" }}>
-            <LineChart
-              data={{
-                labels: actualDateData,
-                datasets: [
-                  {
-                    data: actualWeightData,
-                  },
-                ],
-              }}
-              width={screenWidth}
-              height={300}
-              verticalLabelRotation={30}
-              chartConfig={chartConfig}
-              bezier
-            />
-          </View>
-        </View>
-      )}
+      <View style={styles.container}>
+  <View style={{ paddingTop: "5%" }}>  
+    {show && (
+      <LineChart
+        data={{
+          labels: actualDateData,
+          datasets: [
+            {
+              data: actualWeightData,
+            },
+          ],
+        }}
+        width={screenWidth}
+        height={300}
+        verticalLabelRotation={30}
+        chartConfig={chartConfig}
+        bezier
+      />
+    )}
+  </View>
+  <View style={{ paddingTop: "5%" }}>  
+    {show && (
+      <LineChart
+        data={{
+          labels: goalDateData,
+          datasets: [
+            {
+              data: goalWeightData,
+            },
+          ],
+        }}
+        width={screenWidth}
+        height={300}
+        verticalLabelRotation={30}
+        chartConfig={chartConfig}
+        bezier
+      />
+    )}
+  </View>
+</View>
     </View>
   );
 };

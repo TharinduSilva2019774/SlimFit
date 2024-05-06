@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "03135094-5608-422d-829b-ef031820dfaf"
+      }
+    }
   },
   "name": "SlimFitFrontendv1"
 }
