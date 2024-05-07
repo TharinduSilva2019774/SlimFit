@@ -72,7 +72,7 @@ function EditSettingScreen() {
       weight > 0,
       gender > 0,
       weeklyWeightLossGoal > 0 && weeklyWeightLossGoal <= 500,
-      dailyActivityGoal > 0)
+      dailyActivityGoal > -1)
     ) {
       const token = await getToken();
       fetch("http://10.0.2.2:8080/api/v1/user", {
@@ -98,7 +98,6 @@ function EditSettingScreen() {
           return response.json();
         })
         .then((data) => {
-          console.log("Success:", data);
           navigation.navigate("TabNavigator");
         })
         .catch((error) => {
@@ -132,9 +131,11 @@ function EditSettingScreen() {
       const currentWeightKg = parseFloat(weight);
       const targetWeightKg = parseFloat(targetWeight);
       const weeklyWeightLossGrams = parseFloat(
-        weeklyWeightLossGoal - dailyActivityGoal
+        parseInt(weeklyWeightLossGoal) + parseInt(dailyActivityGoal)
       );
-
+      console.log(currentWeightKg)
+      console.log(targetWeightKg)
+      console.log(weeklyWeightLossGrams)
       if (
         !isNaN(currentWeightKg) &&
         !isNaN(targetWeightKg) &&
@@ -148,7 +149,6 @@ function EditSettingScreen() {
         if (timeInWeeks < 0) {
           timeInWeeks = timeInWeeks * -1;
         }
-        console.log(timeInWeeks);
         return `You will achive you goal in ${timeInWeeks} weeks`;
       } else {
         return "";
@@ -247,8 +247,7 @@ function EditSettingScreen() {
             {targetWeight < 40 &&
             targetWeight > 0 &&
             weeklyWeightLossGoal > 0 &&
-            weight > 0 &&
-            dailyActivityGoal > 0
+            weight > 0 
               ? "This is an unrealistic goal"
               : calculateTimeToReachTarget()}
           </Text>

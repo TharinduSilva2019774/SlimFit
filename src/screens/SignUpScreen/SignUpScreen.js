@@ -42,11 +42,9 @@ const SignUpScreen = () => {
 
   const signUpRequest = () => {
     if (!validateEmail(email)) {
-      console.log("Invalid email");
       setErrorMessage("Invalid email");
       setModalVisible(true);
     } else if (!validatePassword(password)) {
-      console.log("Invalid password");
       setErrorMessage(
         "The password should at least contain 8 characters, including an upper case, a lower case letter and numbers."
       );
@@ -65,13 +63,11 @@ const SignUpScreen = () => {
           .then(async (response) => {
             console.log("Success:", response.data);
             parseResponseToTokenPayload(response.data);
-            console.log(tokenPayload.token);
             storeToken(tokenPayload.token);
             navigation.navigate("OnBoarding");
           })
           .catch(function (error) {
             if (error.response) {
-              console.log(error.response.data);
               setErrorMessage(error.response.data);
             } else {
               console.log("Error", error.message);

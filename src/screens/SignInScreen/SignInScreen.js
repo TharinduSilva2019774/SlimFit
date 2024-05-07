@@ -37,15 +37,12 @@ const SignInScreen = () => {
           // Add any other data you want to send in the body
         })
         .then(async (response) => {
-          console.log("Success:", response.data);
           parseResponseToTokenPayload(response.data);
-          console.log(tokenPayload.token);
           storeToken(tokenPayload.token);
           navigation.navigate("TabNavigator");
         })
         .catch(function (error) {
           if (error.response) {
-            console.log(error.response.data);
             setErrorMessage(error.response.data);
           } else {
             console.log("Error", error.message);

@@ -73,21 +73,6 @@ const ProgressScreen = () => {
 
   const screenWidth = Dimensions.get("window").width;
 
-  const Record = ({ date, weight }) => (
-    <View style={styles.recordContainer}>
-      <Text style={styles.recordText}>{date}</Text>
-      <Text style={styles.recordText}>{weight}</Text>
-    </View>
-  );
-
-  const RecordList = ({ records }) => (
-    <View>
-      {records.map((record, index) => (
-        <Record key={index} date={record.date} weight={record.weight} />
-      ))}
-    </View>
-  );
-
   return (
     <View style={styles.scrollViewcontainer}>
       <View style={styles.headerContainer}>

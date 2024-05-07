@@ -74,7 +74,6 @@ const LogCalorieIntake = () => {
       }
     );
     const json = await response.json();
-    console.log(json);
     if (json.matchFood !== null) {
       const name = json.matchFood.foodName;
       const cal = Math.round(json.matchFood.cal);
@@ -139,7 +138,6 @@ const LogCalorieIntake = () => {
       }),
     })
       .then((response) => {
-        console.log(response);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

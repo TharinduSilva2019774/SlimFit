@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { getToken } from "../../assets/AsyncStorage";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Message = ({ message, isUser }) => {
   return (
@@ -34,9 +35,17 @@ const CommunityScreen = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(async () => {
-    fetchUserData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+        // Call your function here
+        fetchUserData();
+        return () => {
+            // Cleanup function if necessary
+        };
+    }, [])
+);
+
+
 
   const fetchUserData = async () => {
     const token = await getToken();

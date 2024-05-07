@@ -117,7 +117,6 @@ const NewActivityScreen = () => {
           }
         );
         const json = await response.json();
-        console.log("cal : " + parseFloat(json.calorie.toFixed(0)));
         setCaloriesBurned(parseFloat(json.calorie.toFixed(0)));
       } catch (error) {
         console.error("Error fetching data: ", error);

@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation,useFocusEffect } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { getToken } from "../../assets/AsyncStorage";
@@ -34,9 +34,14 @@ const SettingsScreen = () => {
   const [lastName, setLastName] = useState("");
   const [joinedDate, setJoinedDate] = useState(new Date());
 
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+        fetchUserData();
+        return () => {
+        };
+    }, [])
+);
+
 
   const fetchUserData = async () => {
     const token = await getToken();
@@ -66,7 +71,7 @@ const SettingsScreen = () => {
         <ProfileSection title="Joined" content={joinedDate.toDateString()} />
       </View>
 
-      <View style={{ paddingTop: "20%", paddingBottom: "20%" }}>
+      <View style={{ paddingTop: "40%", paddingBottom: "20%" }}>
         <View style={styles.divider} />
         <View style={styles.editAndSettings}>
           <TouchableOpacity
@@ -85,7 +90,9 @@ const SettingsScreen = () => {
         <View style={styles.divider} />
       </View>
 
+      <View style={{paddingTop:"40%"}}>
       <SignOutButton onPress={() => navigation.navigate("SignIn")} />
+      </View>
     </View>
   );
 };

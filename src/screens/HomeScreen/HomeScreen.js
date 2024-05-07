@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
 import { getToken } from "../../assets/AsyncStorage";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation,useFocusEffect } from "@react-navigation/native";
 
 const DayItem = ({ day, date, isSelected, onSelect }) => {
   const style = isSelected ? styles.dayItemSelected : styles.dayItem;
@@ -46,6 +46,18 @@ const HomeScreen = () => {
   useEffect(() => {
     fetchData();
   }, [selectedDate]);
+
+  
+  useFocusEffect(
+    React.useCallback(() => {
+        // Call your function here
+        fetchData();
+        return () => {
+            // Cleanup function if necessary
+        };
+    }, [])
+);
+
 
   const fetchData = async () => {
     try {

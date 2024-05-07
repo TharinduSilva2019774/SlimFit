@@ -106,13 +106,12 @@ function OnBoardingScreen() {
     if (
       weeklyWeightLossGoal > 0 &&
       weight > 0 &&
-      targetWeight > 40 &&
-      dailyActivityGoal > 0
+      targetWeight > 40 
     ) {
       const currentWeightKg = parseFloat(weight);
       const targetWeightKg = parseFloat(targetWeight);
       const weeklyWeightLossGrams = parseFloat(
-        weeklyWeightLossGoal - dailyActivityGoal
+        parseInt(weeklyWeightLossGoal) + parseInt(dailyActivityGoal)
       );
 
       if (
