@@ -7,15 +7,9 @@ import NewActivityScreen from "../screens/NewActivityScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
-<<<<<<< HEAD
-import OnBoardingScreen from "../screens/OnBoarding/OnBoardingScreen";
-import LogWeightScreen from "../screens/LogWeightScreen/LogWeightScreen";
-import EditSettingScreen from "../screens/EditSettingScreen/EditScreenScreen";
-=======
 import OnBoardingScreen from "../screens/OnBoarding";
 import LogWeightScreen from "../screens/LogWeightScreen";
 import EditSettingScreen from "../screens/EditSettingScreen";
->>>>>>> 4e34a3b7714f19fe956cba3e8ece4ad3977969cd
 
 const Stack = createNativeStackNavigator();
 

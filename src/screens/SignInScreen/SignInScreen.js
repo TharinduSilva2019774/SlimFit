@@ -56,8 +56,6 @@ const SignInScreen = () => {
     }
   };
 
-<<<<<<< HEAD
-=======
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -132,7 +130,6 @@ const SignInScreen = () => {
     },
   });
 
->>>>>>> 4e34a3b7714f19fe956cba3e8ece4ad3977969cd
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
