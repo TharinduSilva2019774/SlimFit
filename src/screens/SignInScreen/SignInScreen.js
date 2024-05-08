@@ -45,7 +45,6 @@ const SignInScreen = () => {
           if (error.response) {
             setErrorMessage(error.response.data);
           } else {
-            console.log("Error", error.message);
             setErrorMessage("Unexpected error, please try again");
           }
           setModalVisible(true);

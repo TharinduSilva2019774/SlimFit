@@ -50,10 +50,8 @@ const HomeScreen = () => {
   
   useFocusEffect(
     React.useCallback(() => {
-        // Call your function here
         fetchData();
         return () => {
-            // Cleanup function if necessary
         };
     }, [])
 );

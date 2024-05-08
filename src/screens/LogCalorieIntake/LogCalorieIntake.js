@@ -144,7 +144,6 @@ const LogCalorieIntake = () => {
         return response.json();
       })
       .then((data) => {
-        console.log("Success:", data);
         setCaloriesBurned(0);
         setCurrentSelectedFoodWeight();
         setSelectedWeights([]);
